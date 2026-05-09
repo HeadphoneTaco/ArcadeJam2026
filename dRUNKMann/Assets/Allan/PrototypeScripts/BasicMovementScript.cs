@@ -10,8 +10,14 @@ public class BasicMovementScript : MonoBehaviour
     [SerializeField] private float groundCheckSphereRadius = 2f;
     [SerializeField] private GameObject playerCapsule;
     [SerializeField] private Rigidbody rb;
+    [SerializeField] private float maxVelocity;
 
     private Vector2 moveInput;
+
+    private void Start()
+    {
+        rb.maxLinearVelocity = maxVelocity;
+    }
 
     public void Move(InputAction.CallbackContext context)
     {
@@ -36,5 +42,10 @@ public class BasicMovementScript : MonoBehaviour
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawSphere(new Vector3(playerCapsule.transform.position.x, playerCapsule.transform.position.y - groundCheckSphereVerticalOffset, playerCapsule.transform.position.z), groundCheckSphereRadius);
+    }
+
+    private void FixedUpdate()
+    {
+        rb.AddForce(new Vector3(moveInput.x * moveSpeed, 0f, moveInput.y * moveSpeed).normalized, ForceMode.VelocityChange);
     }
 }
