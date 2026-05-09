@@ -327,11 +327,11 @@ Transform:
   m_GameObject: {fileID: 1368580636}
   serializedVersion: 2
   m_LocalRotation: {x: 0.056506284, y: -0, z: -0, w: 0.99840224}
-  m_LocalPosition: {x: 0, y: 2.0400002, z: -8.37}
-  m_LocalScale: {x: 1, y: 0.6666667, z: 1}
+  m_LocalPosition: {x: 0, y: 3.0600002, z: -8.37}
+  m_LocalScale: {x: 1, y: 0.9957564, z: 1.0063655}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2138000721}
+  m_Father: {fileID: 1372251754}
   m_LocalEulerAnglesHint: {x: 6.479, y: 0, z: 0}
 --- !u!114 &1368580640
 MonoBehaviour:
@@ -386,6 +386,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1372251754}
+  - component: {fileID: 1372251755}
+  - component: {fileID: 1372251756}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -402,13 +404,94 @@ Transform:
   m_GameObject: {fileID: 1372251753}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.60954285, y: -0.07276225, z: -0.9902344}
+  m_LocalPosition: {x: 0, y: 1.64, z: 10.69}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2138000721}
+  - {fileID: 1368580639}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1372251755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1372251753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dce8cf26b2950f4c93f45c1a3ba56d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 7
+  diveHeight: 2
+  diveDirectionalStrength: 7
+  groundCheckSphereVerticalOffset: 1.33
+  groundCheckSphereRadius: 0.47
+  playerCapsule: {fileID: 2138000717}
+--- !u!114 &1372251756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1372251753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 2c48075ce193b2b4b80dadc614e6758e, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1372251755}
+        m_TargetAssemblyTypeName: BasicMovementScript, Assembly-CSharp
+        m_MethodName: Move
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 826de02c-1204-4a06-9985-81167f00898e
+    m_ActionName: 'Gameplay/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1372251755}
+        m_TargetAssemblyTypeName: BasicMovementScript, Assembly-CSharp
+        m_MethodName: Dive
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e7a58ab9-2929-4117-954f-bb70e2cc02eb
+    m_ActionName: 'Gameplay/Dive[/Keyboard/r,/Keyboard/space]'
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Gameplay
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &1380103346
 GameObject:
   m_ObjectHideFlags: 0
@@ -947,11 +1030,10 @@ Transform:
   m_GameObject: {fileID: 2138000717}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.622, z: 21.92}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1368580639}
+  m_Children: []
   m_Father: {fileID: 1372251754}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &2138000722
