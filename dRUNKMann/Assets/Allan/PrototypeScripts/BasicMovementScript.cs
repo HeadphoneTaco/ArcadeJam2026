@@ -40,11 +40,13 @@ public class BasicMovementScript : MonoBehaviour
     {
         if (context.performed && IsGrounded())
         {
+            Quaternion targetLeanRotation = Quaternion.Euler(moveInput.y * 45, 0f, -moveInput.x * 45);
             _isPlayerRagdoll = true;
             rb.constraints = RigidbodyConstraints.None;
             //rb.maxLinearVelocity = maxDiveVelocity;
             _shouldPlayerUseDiveVelocity = true;
             rb.AddForce(new Vector3(moveInput.x * diveDirectionalStrength, diveHeight, moveInput.y * diveDirectionalStrength), ForceMode.Impulse);
+            rb.MoveRotation(targetLeanRotation);
             StartCoroutine(ResetPlayerRotationAfterDiving());
         }
     }
