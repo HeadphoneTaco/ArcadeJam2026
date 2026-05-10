@@ -377,7 +377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carRb: {fileID: 376728253}
-  carVelocity: 0.5
+  carVelocity: 0.6
 --- !u!1 &694453450
 GameObject:
   m_ObjectHideFlags: 0
@@ -636,7 +636,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carRb: {fileID: 704646717}
-  carVelocity: 0.5
+  carVelocity: 0.8
 --- !u!1 &726234895
 GameObject:
   m_ObjectHideFlags: 0
@@ -1196,6 +1196,7 @@ GameObject:
   - component: {fileID: 1372251754}
   - component: {fileID: 1372251755}
   - component: {fileID: 1372251756}
+  - component: {fileID: 1372251757}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1308,6 +1309,25 @@ MonoBehaviour:
   m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1372251757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1372251753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4ab12e1b31b533458c5b2673fb7bf37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 2138000722}
+  drunkSwayMinCooldown: 1.5
+  drunkSwayMaxCooldown: 4
+  swayForce: 0.85
+  swayAngle: 55
+  playerStopLeaningDuration: 1
+  swayDuration: 0.5
 --- !u!1 &1380103346
 GameObject:
   m_ObjectHideFlags: 0
@@ -1985,9 +2005,9 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &2138000723
 MonoBehaviour:
   m_ObjectHideFlags: 0
