@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class BasicMovementScript : MonoBehaviour
 {
@@ -11,31 +12,46 @@ public class BasicMovementScript : MonoBehaviour
     [SerializeField] private GameObject playerCapsule;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private float maxVelocity;
+    [SerializeField] private float maxDiveVelocity;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private float playerRagdollDuration;
+    [SerializeField] private float playerGetUpDuration;
 
+    private bool _shouldPlayerUseDiveVelocity;
+    private bool _isPlayerRagdoll;
     private Vector2 moveInput;
+    private RigidbodyConstraints rbDefaultConstraints;
+    private Quaternion uprightPlayerRotation;
 
     private void Start()
     {
-        rb.maxLinearVelocity = maxVelocity;
+        //rb.maxLinearVelocity = maxVelocity;
+        _shouldPlayerUseDiveVelocity = false;
+        rbDefaultConstraints = rb.constraints;
+        uprightPlayerRotation = rb.rotation;
     }
 
     public void Move(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
-        Debug.Log(moveInput);
     }
 
     public void Dive(InputAction.CallbackContext context)
     {
         if (context.performed && IsGrounded())
         {
-            Debug.Log("Diving now!");
+            _isPlayerRagdoll = true;
+            rb.constraints = RigidbodyConstraints.None;
+            //rb.maxLinearVelocity = maxDiveVelocity;
+            _shouldPlayerUseDiveVelocity = true;
+            rb.AddForce(new Vector3(moveInput.x * diveDirectionalStrength, diveHeight, moveInput.y * diveDirectionalStrength), ForceMode.Impulse);
+            StartCoroutine(ResetPlayerRotationAfterDiving());
         }
     }
 
     bool IsGrounded()
     {
-        return Physics.CheckSphere(new Vector3(playerCapsule.transform.position.x, playerCapsule.transform.position.y - groundCheckSphereVerticalOffset, playerCapsule.transform.position.y), 2f);
+        return Physics.CheckSphere(new Vector3(playerCapsule.transform.position.x, playerCapsule.transform.position.y - groundCheckSphereVerticalOffset, playerCapsule.transform.position.z), groundCheckSphereRadius, groundLayer);
     }
 
     private void OnDrawGizmos()
@@ -46,6 +62,61 @@ public class BasicMovementScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.AddForce(new Vector3(moveInput.x * moveSpeed, 0f, moveInput.y * moveSpeed).normalized, ForceMode.VelocityChange);
+        if (IsGrounded() && !_isPlayerRagdoll)
+        {
+            rb.AddForce(new Vector3(moveInput.x, 0f, moveInput.y).normalized * moveSpeed, ForceMode.VelocityChange);
+        }
+
+        LimitHorizontalVelocity();
+    }
+
+    private IEnumerator ResetPlayerRotationAfterDiving()
+    {
+        yield return new WaitForSeconds(playerRagdollDuration);
+
+        float timeElapsed = 0f;
+
+        Quaternion startRotation = rb.rotation;
+
+        while (timeElapsed < playerGetUpDuration)
+        {
+            timeElapsed += Time.deltaTime;
+            float getUpPercentage = Mathf.Clamp01(timeElapsed /  playerGetUpDuration);
+            rb.MoveRotation(Quaternion.Slerp(startRotation, uprightPlayerRotation, getUpPercentage));
+
+            yield return null;
+        }
+
+        //rb.maxLinearVelocity = maxVelocity;
+        _shouldPlayerUseDiveVelocity = false;
+        rb.constraints = rbDefaultConstraints;
+        _isPlayerRagdoll = false;
+    }
+
+    private void LimitHorizontalVelocity()
+    {
+        if (_shouldPlayerUseDiveVelocity)
+        {
+            Vector3 limitedHorizontalVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z).normalized * maxDiveVelocity;
+
+            if (rb.linearVelocity.magnitude > maxDiveVelocity)
+            {
+                rb.linearVelocity = new Vector3(limitedHorizontalVelocity.x, rb.linearVelocity.y, limitedHorizontalVelocity.z);
+            }
+        }
+        else
+        {
+            Vector3 limitedHorizontalVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z).normalized * maxVelocity;
+
+            if (rb.linearVelocity.magnitude > maxVelocity)
+            {
+                rb.linearVelocity = new Vector3(limitedHorizontalVelocity.x, rb.linearVelocity.y, limitedHorizontalVelocity.z);
+            }
+        }
+    }
+
+    private void Update()
+    {
+        Debug.Log(rb.linearVelocity.magnitude);
     }
 }

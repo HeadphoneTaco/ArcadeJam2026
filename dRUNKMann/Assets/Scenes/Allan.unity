@@ -763,13 +763,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  diveHeight: 2
-  diveDirectionalStrength: 7
-  groundCheckSphereVerticalOffset: 1.33
-  groundCheckSphereRadius: 0.42
+  diveHeight: 4
+  diveDirectionalStrength: 100
+  groundCheckSphereVerticalOffset: 1.17
+  groundCheckSphereRadius: 0.36
   playerCapsule: {fileID: 2138000717}
   rb: {fileID: 2138000722}
-  maxVelocity: 13
+  maxVelocity: 9
+  maxDiveVelocity: 25
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  playerRagdollDuration: 3
+  playerGetUpDuration: 1
 --- !u!114 &1372251756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1168,7 +1174,7 @@ GameObject:
   - component: {fileID: 1925059508}
   - component: {fileID: 1925059507}
   - component: {fileID: 1925059506}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GroundPlane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
