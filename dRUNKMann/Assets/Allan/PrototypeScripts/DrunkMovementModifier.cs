@@ -11,6 +11,8 @@ public class DrunkMovementModifier : MonoBehaviour
     [SerializeField] private float playerStopLeaningDuration;
     [SerializeField] private float swayDuration;
 
+    [SerializeField] private BasicMovementScript movementScript;
+
     private float _drunkSwayCooldown;
 
     private Quaternion _uprightPlayerRotation;
@@ -34,7 +36,7 @@ public class DrunkMovementModifier : MonoBehaviour
             Quaternion swayAngleRight = Quaternion.Euler(0, 0, -swayAngle);
 
             //Sway left
-            if (sideToSway == 0)
+            if (sideToSway == 0 && !movementScript.isPlayerRagdoll)
             {
                 float timeElapsedForSwayingLeft = 0f;
                 Quaternion startRotationForSwayLeft = rb.rotation;
@@ -49,7 +51,7 @@ public class DrunkMovementModifier : MonoBehaviour
                 }
             }
             //Sway right
-            else if (sideToSway == 1)
+            else if (sideToSway == 1 && !movementScript.isPlayerRagdoll)
             {
                 float timeElapsedForSwayingRight = 0f;
                 Quaternion startRotationForSwayRight = rb.rotation;

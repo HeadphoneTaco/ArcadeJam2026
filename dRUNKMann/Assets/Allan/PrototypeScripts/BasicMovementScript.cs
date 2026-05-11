@@ -18,7 +18,7 @@ public class BasicMovementScript : MonoBehaviour
     [SerializeField] private float playerGetUpDuration;
 
     private bool _shouldPlayerUseDiveVelocity;
-    private bool _isPlayerRagdoll;
+    public bool isPlayerRagdoll;
     private Vector2 moveInput;
     private RigidbodyConstraints rbDefaultConstraints;
     private Quaternion uprightPlayerRotation;
@@ -41,7 +41,7 @@ public class BasicMovementScript : MonoBehaviour
         if (context.performed && IsGrounded())
         {
             Quaternion targetLeanRotation = Quaternion.Euler(moveInput.y * 45, 0f, -moveInput.x * 45);
-            _isPlayerRagdoll = true;
+            isPlayerRagdoll = true;
             rb.constraints = RigidbodyConstraints.None;
             //rb.maxLinearVelocity = maxDiveVelocity;
             _shouldPlayerUseDiveVelocity = true;
@@ -64,7 +64,7 @@ public class BasicMovementScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (IsGrounded() && !_isPlayerRagdoll)
+        if (IsGrounded() && !isPlayerRagdoll)
         {
             rb.AddForce(new Vector3(moveInput.x, 0f, moveInput.y).normalized * moveSpeed, ForceMode.VelocityChange);
         }
@@ -92,7 +92,7 @@ public class BasicMovementScript : MonoBehaviour
         //rb.maxLinearVelocity = maxVelocity;
         _shouldPlayerUseDiveVelocity = false;
         rb.constraints = rbDefaultConstraints;
-        _isPlayerRagdoll = false;
+        isPlayerRagdoll = false;
     }
 
     private void LimitHorizontalVelocity()
