@@ -14,6 +14,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float jumpForce = 20f;
     bool isGrounded;
     
+    //jump buffer variables
+    [SerializeField] float jumpBufferTime = 0.2f;
+    float jumpBufferCounter;
+    
     //references
     Rigidbody rb;
     [SerializeField] LayerMask groundLayer;
@@ -30,6 +34,17 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         
     }
+    void FixedUpdate()
+    {
+        //jump if shouldJump is true
+        if (shouldJump)
+        {
+            jump();
+            shouldJump = false;
+        }
+        
+    }
+    
     void Update()
     {   
         //get player input
@@ -52,29 +67,30 @@ public class PlayerController : MonoBehaviour
         }
         //raycast
         isGrounded = Physics.CheckSphere(transform.position * sphereDistance, sphereRadius, groundLayer);
+
+        if (Input.GetButtonDown("Jump"))
+        {
+            jumpBufferCounter = jumpBufferTime;       
+        }
+        else
+        {
+            jumpBufferCounter -= Time.deltaTime;
+        }
         
         // check jump input
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (isGrounded && jumpBufferCounter > 0)
         {
             shouldJump = true;
+            jumpBufferCounter = 0f;
         }
     }
 
-    void FixedUpdate()
-    {
-        //jump if shouldJump is true
-        if (shouldJump)
-        {
-            jump();
-            shouldJump = false;
-        }
-        
-    }
+   
 
     //jump method
     void jump()
     {
-        rb.AddForce(jumpForce * jumpPressed * Vector3.up  , ForceMode.Impulse);
+        rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpForce, rb.linearVelocity.z);
     }
 
     //gizmo method
