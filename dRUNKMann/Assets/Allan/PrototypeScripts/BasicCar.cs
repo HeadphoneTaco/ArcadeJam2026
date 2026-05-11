@@ -9,4 +9,12 @@ public class BasicCar : MonoBehaviour
     {
         carRb.AddForce(-Vector3.forward * carVelocity, ForceMode.VelocityChange);
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == 8)
+        {
+            Destroy(gameObject);
+        }
+    }
 }
