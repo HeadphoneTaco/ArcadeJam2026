@@ -116,9 +116,4 @@ public class BasicMovementScript : MonoBehaviour
             }
         }
     }
-
-    private void Update()
-    {
-        Debug.Log(rb.linearVelocity.magnitude);
-    }
 }
