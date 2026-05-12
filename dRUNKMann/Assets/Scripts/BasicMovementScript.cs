@@ -4,15 +4,15 @@ using System.Collections;
 
 public class BasicMovementScript : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed;
+    public float moveSpeed;
     [SerializeField] private float diveHeight;
     [SerializeField] private float diveDirectionalStrength;
     [SerializeField] private float groundCheckSphereVerticalOffset;
     [SerializeField] private float groundCheckSphereRadius = 2f;
     [SerializeField] private GameObject playerCapsule;
     [SerializeField] private Rigidbody rb;
-    [SerializeField] private float maxVelocity;
-    [SerializeField] private float maxDiveVelocity;
+    public float maxVelocity;
+    public float maxDiveVelocity;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float playerRagdollDuration;
     [SerializeField] private float playerGetUpDuration;
@@ -115,10 +115,5 @@ public class BasicMovementScript : MonoBehaviour
                 rb.linearVelocity = new Vector3(limitedHorizontalVelocity.x, rb.linearVelocity.y, limitedHorizontalVelocity.z);
             }
         }
-    }
-
-    private void Update()
-    {
-        Debug.Log(rb.linearVelocity.magnitude);
     }
 }
