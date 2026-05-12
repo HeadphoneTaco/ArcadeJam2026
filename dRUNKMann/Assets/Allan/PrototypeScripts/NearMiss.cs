@@ -32,7 +32,7 @@ public class NearMiss : MonoBehaviour
     {
         if (isInNearMissZone)
         {
-            PlayerScore.Instance.playerScore += nearMissScoreMultiplier * Time.deltaTime;
+            PlayerScore.Instance.AddScore(nearMissScoreMultiplier * Time.deltaTime);
         }
     }
 }

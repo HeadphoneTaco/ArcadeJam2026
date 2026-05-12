@@ -8649,15 +8649,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dce8cf26b2950f4c93f45c1a3ba56d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  moveSpeed: 17
+  maxVelocity: 17.5
+  maxDiveVelocity: 25
+  secondsToReachFullSpeed: 0.55
+  shortestRandomStopTime: 0.75
+  longestRandomStopTime: 3
+  movementInputDeadZone: 0.01
+  movingSideLeanAngle: 15
+  stoppingSideLeanAngle: 32.5
+  sideLeanSmoothTime: 0.25
   diveHeight: 4
   diveDirectionalStrength: 100
+  diveLeanAngle: 20
+  diveLeanInDuration: 0.2
+  diveAirSpinTorque: 2
   groundCheckSphereVerticalOffset: 1.17
   groundCheckSphereRadius: 0.36
   playerCapsule: {fileID: 2138000717}
   rb: {fileID: 2138000722}
-  maxVelocity: 9
-  maxDiveVelocity: 25
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -8733,7 +8743,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1372251753}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e4ab12e1b31b533458c5b2673fb7bf37, type: 3}
   m_Name: 
@@ -15001,7 +15011,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2138000717}
-  m_Material: {fileID: 13400000, guid: 579df8e0bff95c444bf48532f90671b3, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

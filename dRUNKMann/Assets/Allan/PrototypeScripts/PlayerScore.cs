@@ -38,9 +38,15 @@ public class PlayerScore : MonoBehaviour
         IncreasePlayerSpeed();
     }
 
+    public void AddScore(float amount)
+    {
+        playerScore += amount;
+        IncreasePlayerSpeed();
+    }
+
     void IncreasePlayerSpeed()
     {
-        if (playerScore >= nextUpgradeThreshold)
+        while (playerScore >= nextUpgradeThreshold)
         {
             playerSpeedModifier += playerSpeedModifierMultiplier;
             basicMovement.moveSpeed = defaultPlayerSpeed * playerSpeedModifier;

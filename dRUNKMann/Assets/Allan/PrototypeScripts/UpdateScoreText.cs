@@ -9,7 +9,7 @@ public class UpdateScoreText : MonoBehaviour
 
     void Update()
     {
-        scoreText.text = Mathf.Round(PlayerScore.Instance.playerScore).ToString();
-        playerSpeedText.text = "Player Speed x " + PlayerScore.Instance.playerSpeedModifier;
+        scoreText.text = Mathf.FloorToInt(PlayerScore.Instance.playerScore).ToString();
+        playerSpeedText.text = "Player Speed x " + PlayerScore.Instance.playerSpeedModifier.ToString("0.0");
     }
 }

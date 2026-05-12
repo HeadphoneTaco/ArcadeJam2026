@@ -4,15 +4,40 @@ using System.Collections;
 
 public class BasicMovementScript : MonoBehaviour
 {
+    [Header("Speed")]
+    [Tooltip("Target walking speed. The actual top speed is capped by maxVelocity.")]
     public float moveSpeed;
+    [Tooltip("Walking speed cap. If this is lower than moveSpeed, this becomes the actual top speed.")]
+    public float maxVelocity;
+    public float maxDiveVelocity;
+
+    [Header("Movement Smoothing")]
+    [Tooltip("How many seconds it takes to reach full walking speed from a stop.")]
+    [SerializeField] private float secondsToReachFullSpeed = 0.4f;
+    [Tooltip("Fastest possible stop time, in seconds, after releasing movement input.")]
+    [SerializeField] private float shortestRandomStopTime = 1.2f;
+    [Tooltip("Slowest possible stop time, in seconds, after releasing movement input.")]
+    [SerializeField] private float longestRandomStopTime = 3f;
+    [SerializeField] private float movementInputDeadZone = 0.01f;
+
+    [Header("Side Lean")]
+    [Tooltip("Small side lean while the player is moving left or right.")]
+    [SerializeField] private float movingSideLeanAngle = 8f;
+    [Tooltip("Bigger side lean while the player is slowly stopping after sideways movement.")]
+    [SerializeField] private float stoppingSideLeanAngle = 22f;
+    [Tooltip("How long the lean takes to settle into its target angle. Higher is smoother/slower.")]
+    [SerializeField] private float sideLeanSmoothTime = 0.25f;
+
+    [Header("Dive")]
     [SerializeField] private float diveHeight;
     [SerializeField] private float diveDirectionalStrength;
+    [SerializeField] private float diveLeanAngle = 55f;
+    [SerializeField] private float diveLeanInDuration = 0.2f;
+    [SerializeField] private float diveAirSpinTorque = 8f;
     [SerializeField] private float groundCheckSphereVerticalOffset;
     [SerializeField] private float groundCheckSphereRadius = 2f;
     [SerializeField] private GameObject playerCapsule;
     [SerializeField] private Rigidbody rb;
-    public float maxVelocity;
-    public float maxDiveVelocity;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float playerRagdollDuration;
     [SerializeField] private float playerGetUpDuration;
@@ -22,6 +47,13 @@ public class BasicMovementScript : MonoBehaviour
     private Vector2 moveInput;
     private RigidbodyConstraints rbDefaultConstraints;
     private Quaternion uprightPlayerRotation;
+    private float sideLeanAmount;
+    private float sideLeanVelocity;
+    private float currentStopDuration;
+    private float stopTimeElapsed;
+    private Vector3 stopStartVelocity;
+    private bool wasTryingToMove;
+    private bool isRandomlyStopping;
 
     private void Start()
     {
@@ -40,13 +72,26 @@ public class BasicMovementScript : MonoBehaviour
     {
         if (context.performed && IsGrounded())
         {
-            Quaternion targetLeanRotation = Quaternion.Euler(moveInput.y * 45, 0f, -moveInput.x * 45);
             isPlayerRagdoll = true;
             rb.constraints = RigidbodyConstraints.None;
             //rb.maxLinearVelocity = maxDiveVelocity;
             _shouldPlayerUseDiveVelocity = true;
-            rb.AddForce(new Vector3(moveInput.x * diveDirectionalStrength, diveHeight, moveInput.y * diveDirectionalStrength), ForceMode.Impulse);
-            rb.MoveRotation(targetLeanRotation);
+            Vector3 diveDirection = GetMoveDirection();
+
+            if (diveDirection.sqrMagnitude <= 0f)
+            {
+                Vector3 forward = transform.forward;
+                diveDirection = new Vector3(forward.x, 0f, forward.z).normalized;
+
+                if (diveDirection.sqrMagnitude <= 0f)
+                {
+                    diveDirection = Vector3.forward;
+                }
+            }
+
+            rb.AddForce(new Vector3(diveDirection.x * diveDirectionalStrength, diveHeight, diveDirection.z * diveDirectionalStrength), ForceMode.Impulse);
+            rb.AddTorque(GetDiveTorque(diveDirection), ForceMode.Impulse);
+            StartCoroutine(LeanIntoDive(diveDirection));
             StartCoroutine(ResetPlayerRotationAfterDiving());
         }
     }
@@ -66,10 +111,151 @@ public class BasicMovementScript : MonoBehaviour
     {
         if (IsGrounded() && !isPlayerRagdoll)
         {
-            rb.AddForce(new Vector3(moveInput.x, 0f, moveInput.y).normalized * moveSpeed, ForceMode.VelocityChange);
+            ApplyGroundMovement();
+            ApplySideLean();
+        }
+        else
+        {
+            wasTryingToMove = false;
         }
 
         LimitHorizontalVelocity();
+    }
+
+    private void ApplyGroundMovement()
+    {
+        Vector3 currentHorizontalVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
+        Vector3 moveDirection = GetMoveDirection();
+        bool isTryingToMove = moveDirection.sqrMagnitude > 0f;
+
+        if (isTryingToMove)
+        {
+            isRandomlyStopping = false;
+            Vector3 targetHorizontalVelocity = moveDirection * GetTargetWalkSpeed();
+            currentHorizontalVelocity = ApplyWalkingAcceleration(currentHorizontalVelocity, moveDirection, targetHorizontalVelocity);
+        }
+        else
+        {
+            if (!isRandomlyStopping && currentHorizontalVelocity.sqrMagnitude > 0.01f)
+            {
+                BeginRandomStop(currentHorizontalVelocity);
+            }
+
+            if (isRandomlyStopping)
+            {
+                currentHorizontalVelocity = GetRandomStopVelocity();
+            }
+        }
+
+        rb.linearVelocity = new Vector3(currentHorizontalVelocity.x, rb.linearVelocity.y, currentHorizontalVelocity.z);
+        wasTryingToMove = isTryingToMove;
+    }
+
+    private Vector3 ApplyWalkingAcceleration(Vector3 currentHorizontalVelocity, Vector3 moveDirection, Vector3 targetHorizontalVelocity)
+    {
+        float speedChangeThisFrame = GetWalkingSpeedChangePerSecond() * Time.fixedDeltaTime;
+
+        if (IsTryingToMoveAgainstMomentum(currentHorizontalVelocity, moveDirection))
+        {
+            return Vector3.MoveTowards(currentHorizontalVelocity, Vector3.zero, speedChangeThisFrame);
+        }
+
+        return Vector3.MoveTowards(currentHorizontalVelocity, targetHorizontalVelocity, speedChangeThisFrame);
+    }
+
+    private bool IsTryingToMoveAgainstMomentum(Vector3 currentHorizontalVelocity, Vector3 moveDirection)
+    {
+        return currentHorizontalVelocity.sqrMagnitude > 0.01f && Vector3.Dot(currentHorizontalVelocity.normalized, moveDirection) < -0.25f;
+    }
+
+    private float GetWalkingSpeedChangePerSecond()
+    {
+        return GetTargetWalkSpeed() / Mathf.Max(0.01f, secondsToReachFullSpeed);
+    }
+
+    private float GetTargetWalkSpeed()
+    {
+        return Mathf.Max(0f, Mathf.Min(moveSpeed, maxVelocity));
+    }
+
+    private Vector3 GetMoveDirection()
+    {
+        if (moveInput.sqrMagnitude <= movementInputDeadZone * movementInputDeadZone)
+        {
+            return Vector3.zero;
+        }
+
+        return new Vector3(moveInput.x, 0f, moveInput.y).normalized;
+    }
+
+    private void BeginRandomStop(Vector3 horizontalVelocity)
+    {
+        float shortestStopTime = Mathf.Min(shortestRandomStopTime, longestRandomStopTime);
+        float longestStopTime = Mathf.Max(shortestRandomStopTime, longestRandomStopTime);
+        float randomStopTime = Mathf.Max(0.01f, Random.Range(shortestStopTime, longestStopTime));
+
+        currentStopDuration = randomStopTime;
+        stopTimeElapsed = 0f;
+        stopStartVelocity = horizontalVelocity;
+        isRandomlyStopping = true;
+    }
+
+    private Vector3 GetRandomStopVelocity()
+    {
+        stopTimeElapsed += Time.fixedDeltaTime;
+        float stopPercentage = Mathf.Clamp01(stopTimeElapsed / currentStopDuration);
+        Vector3 stopVelocity = Vector3.Lerp(stopStartVelocity, Vector3.zero, stopPercentage);
+
+        if (stopPercentage >= 1f || stopVelocity.sqrMagnitude <= 0.01f)
+        {
+            isRandomlyStopping = false;
+            return Vector3.zero;
+        }
+
+        return stopVelocity;
+    }
+
+    private void ApplySideLean()
+    {
+        Vector3 currentHorizontalVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
+        float sidewaysSpeed = currentHorizontalVelocity.x;
+        float targetLeanAmount = 0f;
+
+        if (Mathf.Abs(sidewaysSpeed) > 0.01f)
+        {
+            bool isStopping = GetMoveDirection().sqrMagnitude <= 0f;
+            float leanAngle = isStopping ? stoppingSideLeanAngle : movingSideLeanAngle;
+            targetLeanAmount = -Mathf.Sign(sidewaysSpeed) * leanAngle;
+        }
+
+        sideLeanAmount = Mathf.SmoothDampAngle(sideLeanAmount, targetLeanAmount, ref sideLeanVelocity, Mathf.Max(0.01f, sideLeanSmoothTime), Mathf.Infinity, Time.fixedDeltaTime);
+        Quaternion targetRotation = uprightPlayerRotation * Quaternion.Euler(0f, 0f, sideLeanAmount);
+        float leanPercentage = 1f - Mathf.Exp(-(1f / Mathf.Max(0.01f, sideLeanSmoothTime)) * Time.fixedDeltaTime);
+        rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, leanPercentage));
+    }
+
+    private IEnumerator LeanIntoDive(Vector3 diveDirection)
+    {
+        float timeElapsed = 0f;
+        Quaternion startRotation = rb.rotation;
+        Quaternion diveRotation = uprightPlayerRotation * Quaternion.Euler(diveDirection.z * diveLeanAngle, 0f, -diveDirection.x * diveLeanAngle);
+
+        while (timeElapsed < diveLeanInDuration)
+        {
+            timeElapsed += Time.deltaTime;
+            float leanPercentage = Mathf.Clamp01(timeElapsed / Mathf.Max(0.01f, diveLeanInDuration));
+            rb.MoveRotation(Quaternion.Slerp(startRotation, diveRotation, leanPercentage));
+
+            yield return null;
+        }
+    }
+
+    private Vector3 GetDiveTorque(Vector3 diveDirection)
+    {
+        Vector3 tumbleAxis = Vector3.Cross(Vector3.up, diveDirection).normalized;
+        Vector3 rollAxis = diveDirection * Random.Range(-0.35f, 0.35f);
+
+        return (tumbleAxis + rollAxis) * diveAirSpinTorque;
     }
 
     private IEnumerator ResetPlayerRotationAfterDiving()
@@ -97,23 +283,15 @@ public class BasicMovementScript : MonoBehaviour
 
     private void LimitHorizontalVelocity()
     {
-        if (_shouldPlayerUseDiveVelocity)
-        {
-            Vector3 limitedHorizontalVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z).normalized * maxDiveVelocity;
+        float currentMaxVelocity = _shouldPlayerUseDiveVelocity ? maxDiveVelocity : maxVelocity;
+        Vector3 horizontalVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
 
-            if (rb.linearVelocity.magnitude > maxDiveVelocity)
-            {
-                rb.linearVelocity = new Vector3(limitedHorizontalVelocity.x, rb.linearVelocity.y, limitedHorizontalVelocity.z);
-            }
-        }
-        else
+        if (horizontalVelocity.sqrMagnitude <= currentMaxVelocity * currentMaxVelocity)
         {
-            Vector3 limitedHorizontalVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z).normalized * maxVelocity;
-
-            if (rb.linearVelocity.magnitude > maxVelocity)
-            {
-                rb.linearVelocity = new Vector3(limitedHorizontalVelocity.x, rb.linearVelocity.y, limitedHorizontalVelocity.z);
-            }
+            return;
         }
+
+        Vector3 limitedHorizontalVelocity = horizontalVelocity.normalized * currentMaxVelocity;
+        rb.linearVelocity = new Vector3(limitedHorizontalVelocity.x, rb.linearVelocity.y, limitedHorizontalVelocity.z);
     }
 }
