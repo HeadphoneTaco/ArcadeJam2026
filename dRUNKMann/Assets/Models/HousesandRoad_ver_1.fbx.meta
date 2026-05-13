@@ -3,7 +3,47 @@ guid: fb5fd6c2320f8c24faf56e28017aa75c
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Building
+    second: {fileID: 2100000, guid: 6d3ad02412f2af446bc614b6bcfc6c77, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Door
+    second: {fileID: 2100000, guid: e6cae5df7f00acb46907cd2ebd4178ee, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Frames
+    second: {fileID: 2100000, guid: c3cd9ae9f2db04343a190175cece27b6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Glass
+    second: {fileID: 2100000, guid: 096206136878b4d43b7cb9a086052e8f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LightBar
+    second: {fileID: 2100000, guid: ea678c0acca49344ab32f181facc6812, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ramp
+    second: {fileID: 2100000, guid: b6af92e6d7421994a8348112d660fac6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: road
+    second: {fileID: 2100000, guid: 4215b34a80583ea4190b7b873acbd780, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sidewalk
+    second: {fileID: 2100000, guid: 3f4662451d11f094da525f9448b7f73a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
