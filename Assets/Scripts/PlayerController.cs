@@ -1,15 +1,18 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    // get input actions
+    MyInputActions inputActions;
+    
     //variables
     
     //movement
-    float playerMovementX;
-    float playerMovementY;
+    Vector2 inputValue;
+    Vector3 movement;
     
     //jumping
-    float jumpPressed;
     bool shouldJump;
     [SerializeField] float jumpForce = 20f;
     bool isGrounded;
@@ -27,15 +30,38 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float rotationSpeed = 10f;
     [SerializeField] float sphereRadius = 0.1f;
     [SerializeField] float sphereDistance = 0.1f;
+    [SerializeField] Transform footLocation;
+
+    void Awake()
+    {
+        // instantiate input actions
+        inputActions = new MyInputActions();
+        inputActions.Enable();    
+    }
 
     void Start()
     {
         //get rigidbody
         rb = GetComponent<Rigidbody>();
-        
     }
+
+    void OnEnable()
+    {
+        inputActions.Player.Movement.performed += onMove;
+        inputActions.Player.Movement.canceled += onMove;
+    }
+
+    void OnDisable()
+    {
+        inputActions.Disable();
+        inputActions.Player.Movement.performed -= onMove;
+        inputActions.Player.Movement.canceled -= onMove;
+    }
+
     void FixedUpdate()
     {
+        handleMovement();
+        
         //jump if shouldJump is true
         if (shouldJump)
         {
@@ -47,18 +73,10 @@ public class PlayerController : MonoBehaviour
     
     void Update()
     {   
-        //get player input
-        playerMovementX = Input.GetAxisRaw("Horizontal");
-        playerMovementY = Input.GetAxisRaw("Vertical");
-        jumpPressed = Input.GetAxis("Jump");
+        //converting input into a Vector3
+        movement = new Vector3(inputValue.x, 0, inputValue.y);
+        movement = movement.normalized;
         
-        //convert player input into Vector3
-        Vector3 movement = new Vector3(playerMovementX, 0f, playerMovementY);
-        movement.Normalize();
-        
-        //player movement
-        transform.Translate(  movementSpeed * Time.deltaTime * movement,Space.World);
-
         //rotate the player with movement
         if (movement != Vector3.zero)
         {
@@ -66,11 +84,12 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);            
         }
         //raycast
-        isGrounded = Physics.CheckSphere(transform.position * sphereDistance, sphereRadius, groundLayer);
+        isGrounded = Physics.CheckSphere(footLocation.position , sphereRadius, groundLayer);
 
         if (Input.GetButtonDown("Jump"))
         {
-            jumpBufferCounter = jumpBufferTime;       
+            jumpBufferCounter = jumpBufferTime;   
+            Debug.Log($"The value for is grounded is {isGrounded}");
         }
         else
         {
@@ -99,6 +118,18 @@ public class PlayerController : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(transform.position * sphereDistance, sphereRadius);
         
+    }
+    
+    //onMove method
+
+    void onMove(InputAction.CallbackContext context)
+    {
+        inputValue = context.ReadValue<Vector2>();    
+    }
+
+    void handleMovement()
+    {
+        rb.linearVelocity = new Vector3(movement.x * movementSpeed, rb.linearVelocity.y, movement.z * movementSpeed);
     }
 }
 
