@@ -8653,8 +8653,8 @@ MonoBehaviour:
   maxVelocity: 17.5
   maxDiveVelocity: 25
   secondsToReachFullSpeed: 0.55
-  shortestRandomStopTime: 0.75
-  longestRandomStopTime: 3
+  shortestRandomStopTime: 1.25
+  longestRandomStopTime: 2.5
   movementInputDeadZone: 0.01
   movingSideLeanAngle: 15
   stoppingSideLeanAngle: 32.5
