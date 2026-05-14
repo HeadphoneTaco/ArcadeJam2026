@@ -1,24 +1,9 @@
 fileFormatVersion: 2
-guid: 390844930406d3045816725dc9bb6326
+guid: a8fc49374e0f07f409723e5db5fee88b
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: BlackEyes
-    second: {fileID: 2100000, guid: e57e2e997a2291a47b370f48d6a6d55e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: RatFur
-    second: {fileID: 2100000, guid: f280aa9a2bd973a44b00467ecb33b754, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: RatTail
-    second: {fileID: 2100000, guid: 8133f7ee78303a7489290410d9bb8a98, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
