@@ -1,29 +1,9 @@
 fileFormatVersion: 2
-guid: 9b536e73c60d5cb488f787e9bf6f7d4e
+guid: b16c719978809344e8c9abebb34e4eb0
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: BlackWindow
-    second: {fileID: 2100000, guid: 814ea7a52a8bfb749be858bfecbb74fa, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: CarBody
-    second: {fileID: 2100000, guid: 1d437bf7c917c374696f5c865e6e24ac, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: CarLights
-    second: {fileID: 2100000, guid: 220f0af12659e564daff8088b7f62534, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: CarVents
-    second: {fileID: 2100000, guid: 3207a0387e8bbe44eb3580d27e718aa2, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0

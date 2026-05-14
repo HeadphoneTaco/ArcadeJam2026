@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 0043ccac24b90194f8b0785dcce33347
-SketchUpImporter:
+guid: 0ce35aab6016568439d851c1874c9a14
+ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
   externalObjects: {}
   materials:
     materialImportMode: 2
-    materialName: 2
-    materialSearch: 0
+    materialName: 0
+    materialSearch: 1
     materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
@@ -33,7 +33,7 @@ SketchUpImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.0254
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -76,7 +76,7 @@ SketchUpImporter:
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   referencedClips: []
-  importAnimation: 0
+  importAnimation: 1
   humanDescription:
     serializedVersion: 3
     human: []
@@ -88,14 +88,14 @@ SketchUpImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.0254
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
@@ -105,10 +105,3 @@ SketchUpImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-  generateBackFace: 1
-  mergeCoplanarFaces: 0
-  selectedNodes: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b000000
-  assetHash:
-    serializedVersion: 2
-    Hash: a7aab3c62123769b7fabe788ee52559e
-  fileUnit: 0
