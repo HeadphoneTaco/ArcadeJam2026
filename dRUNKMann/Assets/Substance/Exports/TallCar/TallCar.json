@@ -89,6 +89,9 @@
         },
         "Windows1": {
             "shader": "Main shader"
+        },
+        "standardSurface1": {
+            "shader": "Main shader"
         }
     }
 }
