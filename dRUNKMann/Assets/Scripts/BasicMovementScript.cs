@@ -19,6 +19,7 @@ public class BasicMovementScript : MonoBehaviour
     [Tooltip("Slowest possible stop time, in seconds, after releasing movement input.")]
     [SerializeField] private float longestRandomStopTime = 3f;
     [SerializeField] private float movementInputDeadZone = 0.01f;
+    [SerializeField] private bool requireGroundedToMove = false;
 
     [Header("Side Lean")]
     [Tooltip("Small side lean while the player is moving left or right.")]
@@ -43,7 +44,7 @@ public class BasicMovementScript : MonoBehaviour
     [SerializeField] private float playerGetUpDuration;
 
     private bool _shouldPlayerUseDiveVelocity;
-    public bool isPlayerRagdoll;
+    [System.NonSerialized] public bool isPlayerRagdoll;
     private Vector2 moveInput;
     private RigidbodyConstraints rbDefaultConstraints;
     private Quaternion uprightPlayerRotation;
@@ -55,9 +56,15 @@ public class BasicMovementScript : MonoBehaviour
     private bool wasTryingToMove;
     private bool isRandomlyStopping;
 
+    private void Awake()
+    {
+        isPlayerRagdoll = false;
+    }
+
     private void Start()
     {
         //rb.maxLinearVelocity = maxVelocity;
+        isPlayerRagdoll = false;
         _shouldPlayerUseDiveVelocity = false;
         rbDefaultConstraints = rb.constraints;
         uprightPlayerRotation = rb.rotation;
@@ -109,7 +116,7 @@ public class BasicMovementScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (IsGrounded() && !isPlayerRagdoll)
+        if (CanApplyNormalMovement())
         {
             ApplyGroundMovement();
             ApplySideLean();
@@ -120,6 +127,16 @@ public class BasicMovementScript : MonoBehaviour
         }
 
         LimitHorizontalVelocity();
+    }
+
+    private bool CanApplyNormalMovement()
+    {
+        if (isPlayerRagdoll)
+        {
+            return false;
+        }
+
+        return !requireGroundedToMove || IsGrounded();
     }
 
     private void ApplyGroundMovement()
@@ -188,6 +205,11 @@ public class BasicMovementScript : MonoBehaviour
         return new Vector3(moveInput.x, 0f, moveInput.y).normalized;
     }
 
+    private bool IsPressingSideways()
+    {
+        return Mathf.Abs(moveInput.x) > movementInputDeadZone;
+    }
+
     private void BeginRandomStop(Vector3 horizontalVelocity)
     {
         float shortestStopTime = Mathf.Min(shortestRandomStopTime, longestRandomStopTime);
@@ -217,21 +239,24 @@ public class BasicMovementScript : MonoBehaviour
 
     private void ApplySideLean()
     {
-        Vector3 currentHorizontalVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
-        float sidewaysSpeed = currentHorizontalVelocity.x;
-        float targetLeanAmount = 0f;
-
-        if (Mathf.Abs(sidewaysSpeed) > 0.01f)
-        {
-            bool isStopping = GetMoveDirection().sqrMagnitude <= 0f;
-            float leanAngle = isStopping ? stoppingSideLeanAngle : movingSideLeanAngle;
-            targetLeanAmount = -Mathf.Sign(sidewaysSpeed) * leanAngle;
-        }
-
+        float targetLeanAmount = GetTargetSideLeanAmount();
         sideLeanAmount = Mathf.SmoothDampAngle(sideLeanAmount, targetLeanAmount, ref sideLeanVelocity, Mathf.Max(0.01f, sideLeanSmoothTime), Mathf.Infinity, Time.fixedDeltaTime);
+
         Quaternion targetRotation = uprightPlayerRotation * Quaternion.Euler(0f, 0f, sideLeanAmount);
         float leanPercentage = 1f - Mathf.Exp(-(1f / Mathf.Max(0.01f, sideLeanSmoothTime)) * Time.fixedDeltaTime);
         rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, leanPercentage));
+    }
+
+    private float GetTargetSideLeanAmount()
+    {
+        if (IsPressingSideways())
+        {
+            return -Mathf.Clamp(moveInput.x, -1f, 1f) * movingSideLeanAngle;
+        }
+
+        float sidewaysSpeed = rb.linearVelocity.x;
+        float sidewaysSpeedPercentage = Mathf.Clamp(sidewaysSpeed / Mathf.Max(0.01f, GetTargetWalkSpeed()), -1f, 1f);
+        return -sidewaysSpeedPercentage * stoppingSideLeanAngle;
     }
 
     private IEnumerator LeanIntoDive(Vector3 diveDirection)

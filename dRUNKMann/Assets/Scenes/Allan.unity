@@ -7556,15 +7556,16 @@ MonoBehaviour:
   shortestRandomStopTime: 1.25
   longestRandomStopTime: 2.5
   movementInputDeadZone: 0.01
+  requireGroundedToMove: 0
   movingSideLeanAngle: 15
   stoppingSideLeanAngle: 32.5
   sideLeanSmoothTime: 0.25
   diveHeight: 4
-  diveDirectionalStrength: 100
+  diveDirectionalStrength: 15
   diveLeanAngle: 20
   diveLeanInDuration: 0.2
   diveAirSpinTorque: 2
-  groundCheckSphereVerticalOffset: 1.17
+  groundCheckSphereVerticalOffset: 1.25
   groundCheckSphereRadius: 0.36
   playerCapsule: {fileID: 2138000717}
   rb: {fileID: 2138000722}
@@ -7573,7 +7574,6 @@ MonoBehaviour:
     m_Bits: 64
   playerRagdollDuration: 3
   playerGetUpDuration: 1
-  isPlayerRagdoll: 0
 --- !u!114 &1372251756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7774,7 +7774,7 @@ Transform:
   m_GameObject: {fileID: 1380103346}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.70710677, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 47.09, y: 2, z: 695.99994}
+  m_LocalPosition: {x: 40.93, y: 2, z: 695.99994}
   m_LocalScale: {x: 1426, y: 48.2, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
