@@ -22,15 +22,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5b13d2c83b507494ab0278ef63d93ce0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3
+      value: 80.42854
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5b13d2c83b507494ab0278ef63d93ce0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 19.46
+      value: 85.055824
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5b13d2c83b507494ab0278ef63d93ce0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 58.86
+      value: -32.539314
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5b13d2c83b507494ab0278ef63d93ce0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -38,15 +38,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5b13d2c83b507494ab0278ef63d93ce0, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5b13d2c83b507494ab0278ef63d93ce0, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5b13d2c83b507494ab0278ef63d93ce0, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5b13d2c83b507494ab0278ef63d93ce0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -63,7 +63,7 @@ PrefabInstance:
     - target: {fileID: -6964706853423876581, guid: 5b13d2c83b507494ab0278ef63d93ce0, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 7682964474963093803, guid: a5069cbdfb4480442b16fa90cbf5a54f, type: 3}
+      objectReference: {fileID: 7682964474963093803, guid: 5d35ad0baf68dd543aceee7a5daf4fb2, type: 3}
     - target: {fileID: -5286947020526361050, guid: 5b13d2c83b507494ab0278ef63d93ce0, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
