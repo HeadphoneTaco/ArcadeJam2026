@@ -36,6 +36,17 @@ public class StraightRoadHouseSpawner : MonoBehaviour
     [SerializeField] private GameObject[] leftPattern;
     [SerializeField] private GameObject[] rightPattern;
 
+    [Header("Final House")]
+    [SerializeField] private bool spawnFinalHouse = true;
+    [SerializeField] private GameObject finalHousePrefab;
+    [SerializeField] private float finalHouseX = 0f;
+    [SerializeField] private float finalHouseY = 19.8f;
+    [SerializeField] private float finalHouseDistanceAfterLastLot = 40f;
+    [SerializeField] private float finalHouseYawDegrees = -90f;
+    [SerializeField] private Vector3 finalHouseWinTriggerCenter = new Vector3(0f, -16f, 0f);
+    [SerializeField] private Vector3 finalHouseWinTriggerSize = new Vector3(18f, 12f, 18f);
+    [SerializeField] private string finalHouseWinMessage = "YOU MADE IT HOME";
+
     private readonly List<GameObject> spawnedHouses = new List<GameObject>();
 
     private void Reset()
@@ -88,6 +99,11 @@ public class StraightRoadHouseSpawner : MonoBehaviour
 
             SpawnHouse(ChoosePrefab(lotIndex, RoadSide.Left), RoadSide.Left, z);
             SpawnHouse(ChoosePrefab(lotIndex, RoadSide.Right), RoadSide.Right, z);
+        }
+
+        if (spawnFinalHouse)
+        {
+            SpawnFinalHouse();
         }
     }
 
@@ -182,6 +198,37 @@ public class StraightRoadHouseSpawner : MonoBehaviour
         spawnedHouses.Add(house);
     }
 
+    private void SpawnFinalHouse()
+    {
+        GameObject prefab = GetFinalHousePrefab();
+
+        if (prefab == null)
+        {
+            Debug.LogWarning($"{nameof(StraightRoadHouseSpawner)} is missing a prefab for the final house.", this);
+            return;
+        }
+
+        float lastLotZ = firstLotZ + lotSpacing * (lotCount - 1);
+        float finalHouseZ = lastLotZ + finalHouseDistanceAfterLastLot;
+        Vector3 localPosition = new Vector3(finalHouseX, finalHouseY, finalHouseZ);
+        Vector3 worldPosition = transform.TransformPoint(localPosition);
+        Quaternion worldRotation = transform.rotation * Quaternion.Euler(0f, finalHouseYawDegrees, 0f);
+        Transform parent = parentGeneratedHouses ? GetOrCreateGeneratedContainer() : null;
+
+        GameObject house = Instantiate(prefab, worldPosition, worldRotation, parent);
+        house.name = $"{prefab.name}_Final";
+
+        KeepHouseUnmirrored(house.transform);
+        spawnedHouses.Add(house);
+
+        CreateFinalHouseWinTrigger(house, parent);
+    }
+
+    private GameObject GetFinalHousePrefab()
+    {
+        return finalHousePrefab != null ? finalHousePrefab : baseHouseStreetPrefab;
+    }
+
     private GameObject GetDefaultPrefab(int lotIndex, RoadSide side)
     {
         if (side == RoadSide.Left)
@@ -224,5 +271,29 @@ public class StraightRoadHouseSpawner : MonoBehaviour
         float xMagnitude = Mathf.Abs(scale.x);
         scale.x = side == RoadSide.Right ? -xMagnitude : xMagnitude;
         house.localScale = scale;
+    }
+
+    private static void KeepHouseUnmirrored(Transform house)
+    {
+        Vector3 scale = house.localScale;
+        scale.x = Mathf.Abs(scale.x);
+        house.localScale = scale;
+    }
+
+    private void CreateFinalHouseWinTrigger(GameObject house, Transform parent)
+    {
+        GameObject triggerObject = new GameObject($"{house.name}_WinTrigger");
+        Vector3 triggerWorldPosition = house.transform.position + house.transform.rotation * finalHouseWinTriggerCenter;
+        triggerObject.transform.SetPositionAndRotation(triggerWorldPosition, house.transform.rotation);
+        triggerObject.transform.SetParent(parent, true);
+
+        BoxCollider triggerCollider = triggerObject.AddComponent<BoxCollider>();
+        triggerCollider.isTrigger = true;
+        triggerCollider.size = finalHouseWinTriggerSize;
+
+        FinalHouseWinTrigger winTrigger = triggerObject.AddComponent<FinalHouseWinTrigger>();
+        winTrigger.Initialize(finalHouseWinMessage);
+
+        spawnedHouses.Add(triggerObject);
     }
 }

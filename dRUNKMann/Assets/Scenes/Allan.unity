@@ -33956,7 +33956,7 @@ MonoBehaviour:
   baseHouseStreetPrefab: {fileID: 5264925938609247662, guid: c830b0efb6131cb45a1642b92e800b69, type: 3}
   tallHouseStreetPrefab: {fileID: 7003344457343554960, guid: d58040fc78d3f7243b5b6dc67da27e48, type: 3}
   shortHouseStreetPrefab: {fileID: 755462486842640578, guid: 7ea19e2bb47c74f45b7c6dfda15100c0, type: 3}
-  lotCount: 100
+  lotCount: 20
   firstLotZ: 18
   lotSpacing: 40
   houseY: 20
@@ -33972,6 +33972,15 @@ MonoBehaviour:
   rightPattern:
   - {fileID: 755462486842640578, guid: 7ea19e2bb47c74f45b7c6dfda15100c0, type: 3}
   - {fileID: 5264925938609247662, guid: c830b0efb6131cb45a1642b92e800b69, type: 3}
+  spawnFinalHouse: 1
+  finalHousePrefab: {fileID: 5264925938609247662, guid: c830b0efb6131cb45a1642b92e800b69, type: 3}
+  finalHouseX: 0
+  finalHouseY: 19.95
+  finalHouseDistanceAfterLastLot: 0
+  finalHouseYawDegrees: 90
+  finalHouseWinTriggerCenter: {x: 0, y: -5, z: 0}
+  finalHouseWinTriggerSize: {x: 45, y: 35, z: 95}
+  finalHouseWinMessage: YOU MADE IT HOME
 --- !u!1 &1531638756
 GameObject:
   m_ObjectHideFlags: 0
@@ -42943,7 +42952,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1925059505}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
