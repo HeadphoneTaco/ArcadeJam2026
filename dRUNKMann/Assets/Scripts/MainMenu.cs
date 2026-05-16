@@ -13,23 +13,14 @@ public class MainMenu : MonoBehaviour
     
     public void PlayGame()
     {
-        if (EventSystem.current.currentSelectedGameObject == playButton.gameObject)
-        {
-            SceneManager.LoadScene(gameSceneName);
-        }
+        playButton.Select();
+        SceneManager.LoadScene(gameSceneName);
     }
 
     public void QuitGame()
     {
-        if (EventSystem.current.currentSelectedGameObject == quitButton.gameObject)
-        {
-            Debug.Log("Quitting game...");
-            Application.Quit();
-        }
-        
-        else
-        {
-            quitButton.Select();
-        }
+        quitButton.Select();
+        Debug.Log("Quitting game...");
+        Application.Quit();
     }
 }
