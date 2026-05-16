@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 988b0540c44b58e4baa029a42c5173dd
+guid: 971617363644ba64da14600d8f5c93f0
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -27,7 +27,9 @@ ModelImporter:
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
-    extraExposedTransformPaths: []
+    extraExposedTransformPaths:
+    - Wayne_Ctrl_Reference
+    - WayneSkeleton
     extraUserProperties: []
     clipAnimations: []
     isReadable: 0
@@ -88,8 +90,24 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
+    - boneName: Wayne_LeftUpLeg
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
     - boneName: Wayne_RightUpLeg
       humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Wayne_LeftLeg
+      humanName: LeftLowerLeg
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
@@ -104,16 +122,16 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: Wayne_RightFoot
-      humanName: RightFoot
+    - boneName: Wayne_LeftFoot
+      humanName: LeftFoot
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: Wayne_RightToeBase
-      humanName: RightToes
+    - boneName: Wayne_RightFoot
+      humanName: RightFoot
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
@@ -130,46 +148,6 @@ ModelImporter:
         modified: 0
     - boneName: Wayne_Spine1
       humanName: Chest
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Wayne_Spine2
-      humanName: UpperChest
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Wayne_RightShoulder
-      humanName: RightShoulder
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Wayne_RightArm
-      humanName: RightUpperArm
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Wayne_RightForeArm
-      humanName: RightLowerArm
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Wayne_RightHand
-      humanName: RightHand
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
@@ -200,8 +178,24 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
+    - boneName: Wayne_RightShoulder
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
     - boneName: Wayne_LeftArm
       humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Wayne_RightArm
+      humanName: RightUpperArm
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
@@ -216,6 +210,14 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
+    - boneName: Wayne_RightForeArm
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
     - boneName: Wayne_LeftHand
       humanName: LeftHand
       limit:
@@ -224,24 +226,8 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: Wayne_LeftUpLeg
-      humanName: LeftUpperLeg
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Wayne_LeftLeg
-      humanName: LeftLowerLeg
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Wayne_LeftFoot
-      humanName: LeftFoot
+    - boneName: Wayne_RightHand
+      humanName: RightHand
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
@@ -250,6 +236,14 @@ ModelImporter:
         modified: 0
     - boneName: Wayne_LeftToeBase
       humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Wayne_RightToeBase
+      humanName: RightToes
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
@@ -496,6 +490,14 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
+    - boneName: Wayne_Spine2
+      humanName: UpperChest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
     skeleton:
     - name: Wayne(Clone)
       parentName: 
@@ -504,83 +506,83 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Quad_Face
       parentName: Wayne(Clone)
-      position: {x: -0, y: 0, z: 0}
+      position: {x: -0, y: 1.4256202, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Quad_Hair
       parentName: Wayne(Clone)
-      position: {x: -0, y: 0, z: 0}
+      position: {x: -0, y: 1.4256202, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Quad_LFoot
       parentName: Wayne(Clone)
-      position: {x: -0, y: 0, z: 0}
+      position: {x: -0, y: 1.4256202, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Quad_LHand
       parentName: Wayne(Clone)
-      position: {x: -0, y: 0, z: 0}
+      position: {x: -0, y: 1.4256202, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Quad_Pants
       parentName: Wayne(Clone)
-      position: {x: -0, y: 0, z: 0}
+      position: {x: -0, y: 1.4256202, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Quad_RFoot
       parentName: Wayne(Clone)
-      position: {x: -0, y: 0, z: 0}
+      position: {x: -0, y: 1.4256202, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Quad_RHand
       parentName: Wayne(Clone)
-      position: {x: -0, y: 0, z: 0}
+      position: {x: -0, y: 1.4256202, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Quad_Shirt
       parentName: Wayne(Clone)
-      position: {x: -0, y: 0, z: 0}
+      position: {x: -0, y: 1.4256202, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_Reference
       parentName: Wayne(Clone)
-      position: {x: -0, y: -2.999743, z: 0}
+      position: {x: -0, y: -1.5741228, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_ChestEndEffector
       parentName: Wayne_Ctrl_Reference
-      position: {x: -0.0076403045, y: 3.3754048, z: -0.099929266}
-      rotation: {x: 0.000000113580484, y: -1.3063061e-15, z: -0.000000011110387, w: 1}
+      position: {x: -0.0073878765, y: 3.3751462, z: -0.09826947}
+      rotation: {x: 5.551115e-17, y: 2.2972316e-17, z: 1.2500614e-16, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_ChestOriginEffector
       parentName: Wayne_Ctrl_Reference
-      position: {x: -0.0002524224, y: 2.884365, z: -0.0016599225}
-      rotation: {x: 0.000000113580484, y: -1.2767565e-15, z: -0.000000011110387, w: 1}
+      position: {x: -2.3283064e-12, y: 2.8841064, z: -1.6498233e-11}
+      rotation: {x: 3.061617e-17, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_HeadEffector
       parentName: Wayne_Ctrl_Reference
-      position: {x: -0.00025239977, y: 3.9054685, z: -0.10062166}
-      rotation: {x: 0.00000011358046, y: -1.3045121e-15, z: -0.0000000111103855, w: 1}
+      position: {x: 2.2244819e-11, y: 3.9052093, z: -0.09896195}
+      rotation: {x: 3.061617e-17, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_Hips
       parentName: Wayne_Ctrl_Reference
-      position: {x: -0.0002395153, y: 2.7271857, z: -0.0016600224}
-      rotation: {x: 0.00000032130768, y: -0.000077684694, z: 0.000041058338, w: 1}
+      position: {x: -0, y: 2.7269268, z: 0}
+      rotation: {x: 3.061617e-17, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_LeftUpLeg
       parentName: Wayne_Ctrl_Hips
       position: {x: -0.18793085, y: -0.14411342, z: 0}
-      rotation: {x: 0.0032290875, y: -0.00029901587, z: 0.000041604017, w: 0.99999475}
+      rotation: {x: -1.0148403e-15, y: 2.2724878e-16, z: -1.5265567e-16, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_LeftLeg
       parentName: Wayne_Ctrl_LeftUpLeg
       position: {x: -0.026548939, y: -0.4885876, z: -0.049055047}
-      rotation: {x: -0.008712721, y: 0.0006440887, z: 0.000067234396, w: 0.99996185}
+      rotation: {x: -1.1149935e-15, y: 1.517883e-16, z: 1.6924297e-31, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_LeftFoot
       parentName: Wayne_Ctrl_LeftLeg
       position: {x: -0.05866642, y: -0.44170684, z: -0.052363694}
-      rotation: {x: 0.0054834597, y: -0.00026659243, z: -0.00014894283, w: 0.9999849}
+      rotation: {x: -5.421011e-17, y: 2.7755576e-16, z: 6.938894e-18, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_LeftToeBase
       parentName: Wayne_Ctrl_LeftFoot
@@ -590,17 +592,17 @@ ModelImporter:
     - name: Wayne_Ctrl_RightUpLeg
       parentName: Wayne_Ctrl_Hips
       position: {x: 0.20292415, y: -0.14279845, z: 0}
-      rotation: {x: -0.035794515, y: -0.0025330223, z: 0.00024235858, w: 0.999356}
+      rotation: {x: 8.405989e-17, y: 9.960459e-17, z: -6.526402e-17, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_RightLeg
       parentName: Wayne_Ctrl_RightUpLeg
       position: {x: 0.000000057220458, y: -0.48523605, z: -0.05573423}
-      rotation: {x: 0.07151536, y: 0.0046342867, z: -0.0003891605, w: 0.99742866}
+      rotation: {x: 2.8289934e-16, y: 4.078551e-17, z: -1.110223e-16, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_RightFoot
       parentName: Wayne_Ctrl_RightLeg
       position: {x: 0.06660558, y: -0.46199438, z: -8.881784e-18}
-      rotation: {x: -0.035766933, y: -0.0020320292, z: 0.000088092806, w: 0.9993581}
+      rotation: {x: -2.1250363e-17, y: 1.3877788e-17, z: -6.2450045e-17, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_RightToeBase
       parentName: Wayne_Ctrl_RightFoot
@@ -610,12 +612,12 @@ ModelImporter:
     - name: Wayne_Ctrl_Spine
       parentName: Wayne_Ctrl_Hips
       position: {x: -0, y: 0.15717952, z: 0}
-      rotation: {x: -0.00000020772806, y: 0.00007768475, z: -0.000041069456, w: 1}
+      rotation: {x: 3.061617e-17, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_Spine1
       parentName: Wayne_Ctrl_Spine
       position: {x: -0, y: 0.18186666, z: 0}
-      rotation: {x: 3.061617e-17, y: 0, z: -0, w: 1}
+      rotation: {x: 3.061617e-17, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_Spine2
       parentName: Wayne_Ctrl_Spine1
@@ -630,7 +632,7 @@ ModelImporter:
     - name: Wayne_Ctrl_LeftArm
       parentName: Wayne_Ctrl_LeftShoulder
       position: {x: -0.1562074, y: -0.08148515, z: 0}
-      rotation: {x: 0.000023616512, y: -0.000024829564, z: 0.0000057816596, w: 1}
+      rotation: {x: -1.5265567e-16, y: -1.8388069e-16, z: 2.220446e-16, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_LeafLeftArmRoll1
       parentName: Wayne_Ctrl_LeftArm
@@ -640,12 +642,12 @@ ModelImporter:
     - name: Wayne_Ctrl_LeftForeArm
       parentName: Wayne_Ctrl_LeftArm
       position: {x: -0.29109856, y: -0.26809546, z: 0.026320867}
-      rotation: {x: -0.000029837878, y: 0.000032988817, z: -0.000017315195, w: 1}
+      rotation: {x: -1.3877788e-17, y: 0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_LeftHand
       parentName: Wayne_Ctrl_LeftForeArm
       position: {x: -0.29431713, y: -0.28330052, z: 0.1564239}
-      rotation: {x: 0.000006221165, y: -0.000008159412, z: 0.000011533484, w: 1}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_LeftHandIndex1
       parentName: Wayne_Ctrl_LeftHand
@@ -665,7 +667,7 @@ ModelImporter:
     - name: Wayne_Ctrl_LeftHandIndex4
       parentName: Wayne_Ctrl_LeftHandIndex3
       position: {x: 0.014500122, y: -0.020577544, z: 0.0047900197}
-      rotation: {x: 2.7755576e-17, y: 2.7755576e-17, z: 8.500145e-17, w: 1}
+      rotation: {x: -5.551115e-17, y: -0.000000014892728, z: -3.469447e-17, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_LeftHandMiddle1
       parentName: Wayne_Ctrl_LeftHand
@@ -735,7 +737,7 @@ ModelImporter:
     - name: Wayne_Ctrl_LeftHandThumb2
       parentName: Wayne_Ctrl_LeftHandThumb1
       position: {x: -0.0028350067, y: -0.0052741813, z: 0.034466304}
-      rotation: {x: -0.008888277, y: -0.078172185, z: -0.08611919, w: 0.99317354}
+      rotation: {x: -1.6683368e-32, y: 7.632783e-17, z: 2.1857516e-16, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_LeftHandThumb3
       parentName: Wayne_Ctrl_LeftHandThumb2
@@ -745,17 +747,17 @@ ModelImporter:
     - name: Wayne_Ctrl_LeftHandThumb4
       parentName: Wayne_Ctrl_LeftHandThumb3
       position: {x: -0.00024864197, y: -0.045651607, z: -0.000000076293944}
-      rotation: {x: -1.3083913e-16, y: 0.000000011201485, z: 0.000000013187798, w: 1}
+      rotation: {x: -2.6762218e-17, y: -2.2190908e-16, z: -2.246467e-16, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_Neck
       parentName: Wayne_Ctrl_Spine2
       position: {x: -0, y: 0.20187223, z: -0.098961964}
-      rotation: {x: 3.061617e-17, y: 0, z: -0, w: 1}
+      rotation: {x: 3.061617e-17, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_Head
       parentName: Wayne_Ctrl_Neck
       position: {x: -0, y: 0.45549747, z: 0}
-      rotation: {x: 3.061617e-17, y: 0, z: -0, w: 1}
+      rotation: {x: 3.061617e-17, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_RightShoulder
       parentName: Wayne_Ctrl_Spine2
@@ -765,22 +767,22 @@ ModelImporter:
     - name: Wayne_Ctrl_RightArm
       parentName: Wayne_Ctrl_RightShoulder
       position: {x: 0.1681676, y: -0.08611925, z: -0.020864028}
-      rotation: {x: 0.000053839827, y: 0.00005266264, z: -0.000027009088, w: 1}
+      rotation: {x: 1.0408341e-16, y: -1.7347235e-16, z: 1.8055593e-32, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_LeafRightArmRoll1
       parentName: Wayne_Ctrl_RightArm
       position: {x: 0.034513284, y: -0.030718306, z: 0.008396997}
-      rotation: {x: 9.020562e-17, y: -2.0816683e-17, z: -0.000000014901161, w: 1}
+      rotation: {x: 2.0816682e-16, y: -1.179612e-16, z: 1.110223e-16, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_RightForeArm
       parentName: Wayne_Ctrl_RightArm
       position: {x: 0.3451329, y: -0.307183, z: 0.08396995}
-      rotation: {x: -0.00005860271, y: -0.000058151578, z: 0.000039346043, w: 1}
+      rotation: {x: -8.326673e-17, y: 4.1633363e-17, z: -5.551115e-17, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_RightHand
       parentName: Wayne_Ctrl_RightForeArm
       position: {x: 0.18806712, y: -0.17359693, z: 0.07413325}
-      rotation: {x: 0.0000047623803, y: 0.0000054894804, z: -0.000012336913, w: 1}
+      rotation: {x: -1.2325952e-32, y: 6.123234e-17, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_RightHandIndex1
       parentName: Wayne_Ctrl_RightHand
@@ -795,7 +797,7 @@ ModelImporter:
     - name: Wayne_Ctrl_RightHandIndex3
       parentName: Wayne_Ctrl_RightHandIndex2
       position: {x: 0.010213165, y: -0.028845634, z: 0.009370003}
-      rotation: {x: 2.0816682e-17, y: 3.469447e-18, z: -1.6913554e-17, w: 1}
+      rotation: {x: 1.3877788e-17, y: 0.000000013294769, z: -4.510281e-17, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_RightHandIndex4
       parentName: Wayne_Ctrl_RightHandIndex3
@@ -815,7 +817,7 @@ ModelImporter:
     - name: Wayne_Ctrl_RightHandMiddle3
       parentName: Wayne_Ctrl_RightHandMiddle2
       position: {x: 0.0030805205, y: -0.032646902, z: 0.0061735627}
-      rotation: {x: -1.3877788e-17, y: -6.938894e-18, z: -9.62965e-35, w: 1}
+      rotation: {x: -1.2021457e-24, y: 0.000000013294769, z: 9.042246e-17, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_RightHandMiddle4
       parentName: Wayne_Ctrl_RightHandMiddle3
@@ -855,7 +857,7 @@ ModelImporter:
     - name: Wayne_Ctrl_RightHandRing3
       parentName: Wayne_Ctrl_RightHandRing2
       position: {x: -0.003400955, y: -0.028201027, z: 0.0044972226}
-      rotation: {x: -2.7755576e-17, y: -2.7755576e-17, z: -1.700029e-16, w: 1}
+      rotation: {x: -6.938893e-17, y: 0.000000013294769, z: -2.515349e-16, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_RightHandRing4
       parentName: Wayne_Ctrl_RightHandRing3
@@ -870,7 +872,7 @@ ModelImporter:
     - name: Wayne_Ctrl_RightHandThumb2
       parentName: Wayne_Ctrl_RightHandThumb1
       position: {x: 0.012861633, y: -0.024587726, z: 0.020574093}
-      rotation: {x: 0.010330371, y: 0.024414407, z: 0.020699572, w: 0.99943423}
+      rotation: {x: 1.110223e-16, y: -6.938894e-17, z: 7.70372e-33, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_RightHandThumb3
       parentName: Wayne_Ctrl_RightHandThumb2
@@ -884,458 +886,458 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_HipsEffector
       parentName: Wayne_Ctrl_Reference
-      position: {x: 0.0072689056, y: 2.5837305, z: -0.001658949}
-      rotation: {x: 0.00000032130768, y: -0.000077684694, z: 0.000041058338, w: 1}
+      position: {x: 0.007496662, y: 2.583471, z: 2.3283064e-12}
+      rotation: {x: 3.061617e-17, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_LeftAnkleEffector
       parentName: Wayne_Ctrl_Reference
-      position: {x: -0.27314603, y: 1.6525207, z: -0.10141855}
+      position: {x: -0.27314255, y: 1.6525204, z: -0.1014414}
       rotation: {x: -5.421011e-17, y: 2.7755576e-16, z: 6.938894e-18, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_LeftElbowEffector
       parentName: Wayne_Ctrl_Reference
-      position: {x: -0.5530323, y: 3.0262752, z: -0.07336657}
-      rotation: {x: -0.0000061075452, y: 0.000008159555, z: -0.0000115446055, w: 1}
+      position: {x: -0.5527774, y: 3.026015, z: -0.0716971}
+      rotation: {x: -1.3877788e-17, y: 0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_LeftFootEffector
       parentName: Wayne_Ctrl_Reference
-      position: {x: -0.32755226, y: 1.6014875, z: 0.16952236}
+      position: {x: -0.32754883, y: 1.601487, z: 0.16949964}
       rotation: {x: 2.2365468e-32, y: -0, z: -1.2246469e-16, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_LeftHandIndexEffector
       parentName: Wayne_Ctrl_Reference
-      position: {x: -0.8900921, y: 2.626767, z: 0.20068096}
-      rotation: {x: 0.00000011361976, y: -1.1526807e-15, z: -0.000000011122211, w: 1}
+      position: {x: -0.889833, y: 2.626498, z: 0.20234235}
+      rotation: {x: 2.7755576e-17, y: 2.7755576e-17, z: 8.500145e-17, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_LeftHandMiddleEffector
       parentName: Wayne_Ctrl_Reference
-      position: {x: -0.8973039, y: 2.588462, z: 0.16507986}
-      rotation: {x: 0.00000011361976, y: -1.1873751e-15, z: -0.000000011122211, w: 1}
+      position: {x: -0.89704484, y: 2.588193, z: 0.16674127}
+      rotation: {x: 0, y: 0, z: 1.2143064e-16, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_LeftHandPinkyEffector
       parentName: Wayne_Ctrl_Reference
-      position: {x: -0.8841047, y: 2.6009426, z: 0.09150505}
-      rotation: {x: 0.00000011361976, y: -1.263703e-15, z: -0.000000011122211, w: 1}
+      position: {x: -0.8838456, y: 2.6006734, z: 0.09316646}
+      rotation: {x: 4.1633363e-17, y: 5.551115e-17, z: -2.0816682e-17, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_LeftHandRingEffector
       parentName: Wayne_Ctrl_Reference
-      position: {x: -0.8935311, y: 2.5906298, z: 0.14146495}
-      rotation: {x: 0.00000011361976, y: -1.1249251e-15, z: -0.000000011122211, w: 1}
+      position: {x: -0.893272, y: 2.5903606, z: 0.14312637}
+      rotation: {x: 2.7755576e-17, y: 5.551115e-17, z: -1.540744e-33, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_LeftHandThumbEffector
       parentName: Wayne_Ctrl_Reference
-      position: {x: -0.8577302, y: 2.6571703, z: 0.1786638}
-      rotation: {x: -0.008888166, y: -0.07817218, z: -0.086119205, w: 0.99317354}
+      position: {x: -0.84210837, y: 2.655523, z: 0.17999072}
+      rotation: {x: -2.6762218e-17, y: -2.2190908e-16, z: -2.246467e-16, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_LeftHipEffector
       parentName: Wayne_Ctrl_Reference
-      position: {x: -0.18815853, y: 2.583057, z: -0.0016893129}
-      rotation: {x: 0.003229418, y: -0.00037656762, z: 0.0000829129, w: 0.99999475}
+      position: {x: -0.18793082, y: 2.5828137, z: -7.21775e-11}
+      rotation: {x: -1.0148403e-15, y: 2.2724878e-16, z: -1.5265567e-16, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_LeftKneeEffector
       parentName: Wayne_Ctrl_Reference
-      position: {x: -0.21458973, y: 2.0947926, z: -0.053930715}
-      rotation: {x: -0.0054834587, y: 0.00026659254, z: 0.00014894287, w: 0.9999849}
+      position: {x: -0.21448103, y: 2.094228, z: -0.04907493}
+      rotation: {x: -1.1149935e-15, y: 1.517883e-16, z: 1.6924297e-31, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_LeftShoulderEffector
       parentName: Wayne_Ctrl_Reference
-      position: {x: -0.26193228, y: 3.2943697, z: -0.0996833}
-      rotation: {x: 0.000023730094, y: -0.0000248295, z: 0.0000057705465, w: 1}
+      position: {x: -0.26167986, y: 3.294111, z: -0.09802349}
+      rotation: {x: -1.5265567e-16, y: -1.8388069e-16, z: 2.220446e-16, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_LeftWristEffector
       parentName: Wayne_Ctrl_Reference
-      position: {x: -0.8473515, y: 2.7429793, z: 0.08306129}
-      rotation: {x: 0.00000011361976, y: -1.263703e-15, z: -0.000000011122211, w: 1}
+      position: {x: -0.8470924, y: 2.74271, z: 0.08472269}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_RightAnkleEffector
       parentName: Wayne_Ctrl_Reference
-      position: {x: 0.26962042, y: 1.6356084, z: -0.055810116}
+      position: {x: 0.26952374, y: 1.6368985, z: -0.055742968}
       rotation: {x: -2.1250363e-17, y: 1.3877788e-17, z: -6.2450045e-17, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_RightElbowEffector
       parentName: Wayne_Ctrl_Reference
-      position: {x: 0.6037384, y: 2.9816327, z: -0.03711539}
-      rotation: {x: -0.000004648798, y: -0.000005489414, z: 0.000012325799, w: 1}
+      position: {x: 0.6040036, y: 2.9814138, z: -0.035362862}
+      rotation: {x: -8.326673e-17, y: 4.1633363e-17, z: -5.551115e-17, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_RightFootEffector
       parentName: Wayne_Ctrl_Reference
-      position: {x: 0.3287094, y: 1.6010052, z: 0.18767421}
+      position: {x: 0.32861274, y: 1.6022952, z: 0.18774125}
       rotation: {x: 2.2365468e-32, y: -0, z: -1.2246469e-16, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_RightHandIndexEffector
       parentName: Wayne_Ctrl_Reference
-      position: {x: 1.0046881, y: 2.5981557, z: 0.18638587}
-      rotation: {x: 0.000000113582246, y: -1.2761821e-15, z: -0.0000000111135705, w: 1}
+      position: {x: 1.0049498, y: 2.5979314, z: 0.18813473}
+      rotation: {x: 6.938893e-18, y: 0.00000002228746, z: 3.7296555e-17, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_RightHandMiddleEffector
       parentName: Wayne_Ctrl_Reference
-      position: {x: 0.9898344, y: 2.560198, z: 0.14543489}
-      rotation: {x: 0.000000113582246, y: -1.2172015e-15, z: -0.0000000111135705, w: 1}
+      position: {x: 0.99009603, y: 2.559974, z: 0.14718375}
+      rotation: {x: -2.7755576e-17, y: 0.00000002228746, z: 2.5370331e-17, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_RightHandPinkyEffector
       parentName: Wayne_Ctrl_Reference
-      position: {x: 0.946111, y: 2.5630298, z: 0.045979217}
-      rotation: {x: 0.000000113582246, y: -1.2623026e-15, z: -0.0000000111135705, w: 1}
+      position: {x: 0.9463727, y: 2.5628057, z: 0.04772812}
+      rotation: {x: 1.6940659e-21, y: -8.4703295e-22, z: -1.279006e-18, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_RightHandRingEffector
       parentName: Wayne_Ctrl_Reference
-      position: {x: 0.9694176, y: 2.5516455, z: 0.09337856}
-      rotation: {x: 0.000000113582246, y: -1.2623043e-15, z: -0.0000000111135705, w: 1}
+      position: {x: 0.9696792, y: 2.5514214, z: 0.095127456}
+      rotation: {x: -2.775557e-17, y: 0.00000002228746, z: -2.0296265e-16, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_RightHandThumbEffector
       parentName: Wayne_Ctrl_Reference
-      position: {x: 0.880544, y: 2.6431937, z: 0.20854925}
-      rotation: {x: 0.010330484, y: 0.024414403, z: 0.020699566, w: 0.99943423}
+      position: {x: 0.87767494, y: 2.642481, z: 0.21243647}
+      rotation: {x: 1.6653345e-16, y: -2.220446e-16, z: -1.9428903e-16, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_RightHipEffector
       parentName: Wayne_Ctrl_Reference
-      position: {x: 0.20269634, y: 2.584404, z: -0.0016285849}
-      rotation: {x: -0.035794105, y: -0.0026121265, z: 0.00028060898, w: 0.99935573}
+      position: {x: 0.20292415, y: 2.5841284, z: 7.683411e-11}
+      rotation: {x: 8.405989e-17, y: 9.960459e-17, z: -6.526402e-17, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_RightKneeEffector
       parentName: Wayne_Ctrl_Reference
-      position: {x: 0.20316991, y: 2.0964234, z: -0.022511195}
-      rotation: {x: 0.03576694, y: 0.0020320294, z: -0.00008809535, w: 0.9993581}
+      position: {x: 0.20292418, y: 2.0988934, z: -0.05574183}
+      rotation: {x: 2.8289934e-16, y: 4.078551e-17, z: -1.110223e-16, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_RightShoulderEffector
       parentName: Wayne_Ctrl_Reference
-      position: {x: 0.25861186, y: 3.2888353, z: -0.12103929}
-      rotation: {x: 0.00005395341, y: 0.000052662705, z: -0.000027020193, w: 1}
+      position: {x: 0.2588643, y: 3.2885766, z: -0.11937948}
+      rotation: {x: 1.0408341e-16, y: -1.7347235e-16, z: 1.8055593e-32, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Ctrl_RightWristEffector
       parentName: Wayne_Ctrl_Reference
-      position: {x: 0.7918073, y: 2.8080382, z: 0.037019685}
-      rotation: {x: 0.000000113582246, y: -1.201072e-15, z: -0.0000000111135705, w: 1}
+      position: {x: 0.792069, y: 2.8078144, z: 0.038768537}
+      rotation: {x: -1.2325952e-32, y: 6.123234e-17, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Eyeballs
       parentName: Wayne(Clone)
-      position: {x: 0.1059154, y: 1.0839309, z: -0.018036745}
+      position: {x: 0.1059154, y: 2.509551, z: -0.018036745}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: WayneSkeleton
       parentName: Wayne(Clone)
-      position: {x: -0, y: -2.999743, z: 0}
+      position: {x: -0, y: -1.5741228, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Hips
       parentName: WayneSkeleton
-      position: {x: -0.00023953736, y: 4.155156, z: -0.0016600223}
-      rotation: {x: 0.000000003189603, y: -0.00007768471, z: 0.000041058312, w: 1}
+      position: {x: 0.000000008940696, y: 2.7269268, z: 2.3283062e-12}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_LeftUpLeg
       parentName: Wayne_Hips
-      position: {x: -0.18793085, y: -0.1441134, z: -0.000000091761464}
-      rotation: {x: 0.0032167977, y: -0.00029847384, z: 0.000044971588, w: 0.9999948}
+      position: {x: -0.18793085, y: -0.14411347, z: 0}
+      rotation: {x: 0.000032164146, y: -0.00000273995, z: 0.0000027418128, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_LeftLeg
       parentName: Wayne_LeftUpLeg
-      position: {x: -0.0265502, y: -0.48858556, z: -0.049074937}
-      rotation: {x: -0.008695527, y: 0.00064306555, z: 0.000060286664, w: 0.999962}
+      position: {x: -0.026549943, y: -0.48858675, z: -0.049057774}
+      rotation: {x: -0.00004817626, y: 0.0000029348046, z: -0.0000064187925, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_LeftFoot
       parentName: Wayne_LeftLeg
-      position: {x: -0.058661513, y: -0.4417075, z: -0.052366465}
-      rotation: {x: 0.005478874, y: -0.0002661063, z: -0.00014536156, w: 0.999985}
+      position: {x: -0.058661394, y: -0.4417075, z: -0.052366152}
+      rotation: {x: 0.000016012107, y: 5.8876744e-11, z: 0.0000036770143, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_LeftToeBase
       parentName: Wayne_LeftFoot
-      position: {x: -0.0544063, y: -0.051033325, z: 0.27094105}
+      position: {x: -0.054406345, y: -0.051033325, z: 0.270941}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_RightUpLeg
       parentName: Wayne_Hips
-      position: {x: 0.20292413, y: -0.14279845, z: -0.000000090777576}
-      rotation: {x: -0.035764653, y: -0.002530124, z: 0.00023886823, w: 0.99935704}
+      position: {x: 0.20292415, y: -0.14279845, z: 0}
+      rotation: {x: -0.0402455, y: -0.0028453462, z: 0.00023818293, w: 0.99918574}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_RightLeg
       parentName: Wayne_RightUpLeg
-      position: {x: 0.00000002082063, y: -0.48523495, z: -0.055741813}
-      rotation: {x: 0.07145467, y: 0.0046296283, z: -0.00038195576, w: 0.997433}
+      position: {x: 0.00000021288244, y: -0.4852351, z: -0.0557414}
+      rotation: {x: 0.082369044, y: 0.005337932, z: -0.000527421, w: 0.9965875}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_RightFoot
       parentName: Wayne_RightLeg
-      position: {x: 0.06659957, y: -0.4619948, z: -0.0000011386862}
-      rotation: {x: -0.03573565, y: -0.0020302641, z: 0.000084435, w: 0.99935925}
+      position: {x: 0.06659953, y: -0.46199498, z: 0.00000041190938}
+      rotation: {x: -0.042194042, y: -0.0024963408, z: 0.0002700807, w: 0.9991063}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_RightToeBase
       parentName: Wayne_RightFoot
-      position: {x: 0.05908897, y: -0.034603275, z: 0.24348423}
+      position: {x: 0.05908897, y: -0.034603253, z: 0.24348423}
       rotation: {x: 0, y: -0.00004189127, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Spine
       parentName: Wayne_Hips
-      position: {x: -2.1281527e-12, y: 0.15717952, z: 0.00000009998679}
-      rotation: {x: 0.000000003190464, y: 0.000077684774, z: -0.00004106936, w: 1}
+      position: {x: -1.0587912e-24, y: 0.15717956, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Spine1
       parentName: Wayne_Spine
-      position: {x: 4.590678e-12, y: 0.18186666, z: 0.000000038955264}
+      position: {x: 1.0587912e-24, y: 0.1818666, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Spine2
       parentName: Wayne_Spine1
-      position: {x: 4.5904673e-12, y: 0.18186668, z: 0.000000039104275}
+      position: {x: -0, y: 0.1818666, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_LeftShoulder
       parentName: Wayne_Spine2
-      position: {x: -0.105472445, y: 0.12775654, z: -0.09802345}
-      rotation: {x: -0.0015885727, y: 0.0030453105, z: -0.07777101, w: 0.99696535}
+      position: {x: -0.10547246, y: 0.12775649, z: -0.09802348}
+      rotation: {x: -0.0015946389, y: 0.0030569243, z: -0.07777207, w: 0.99696517}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_LeftArm
       parentName: Wayne_LeftShoulder
-      position: {x: -0.15620741, y: -0.08148515, z: -0.000000018053651}
-      rotation: {x: 0.00037372485, y: -0.026130464, z: -0.2621297, w: 0.9646788}
+      position: {x: -0.15620738, y: -0.08148514, z: 0}
+      rotation: {x: 0.00034475923, y: -0.02611193, z: -0.26212835, w: 0.96467966}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_LeafLeftArmRoll1
       parentName: Wayne_LeftArm
-      position: {x: -0.029110197, y: -0.026809169, z: 0.0026320824}
-      rotation: {x: 0, y: 0, z: -0.00004491582, w: 1}
+      position: {x: -0.029110203, y: -0.026809117, z: 0.0026320878}
+      rotation: {x: 0, y: -0, z: -0.00004491582, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_LeftForeArm
       parentName: Wayne_LeftArm
-      position: {x: -0.29110095, y: -0.26809236, z: 0.026326388}
-      rotation: {x: 0.07286829, y: -0.09161277, z: -0.02889091, w: 0.99270475}
+      position: {x: -0.29110065, y: -0.26809284, z: 0.026325008}
+      rotation: {x: 0.0728681, y: -0.09161501, z: -0.028882977, w: 0.9927048}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_LeftHand
       parentName: Wayne_LeftForeArm
-      position: {x: -0.29429322, y: -0.28332758, z: 0.15641978}
-      rotation: {x: 0.0022108625, y: 0.0016743387, z: 0.007348818, w: 0.9999692}
+      position: {x: -0.29429322, y: -0.28332755, z: 0.15641977}
+      rotation: {x: 0.002207942, y: 0.0016844643, z: 0.007347448, w: 0.9999692}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_LeftHandIndex1
       parentName: Wayne_LeftHand
-      position: {x: -0.07645556, y: -0.039373983, z: 0.06698742}
-      rotation: {x: 0.09572012, y: -0.28984585, z: -0.2105705, w: 0.9287018}
+      position: {x: -0.07645556, y: -0.039374016, z: 0.06698742}
+      rotation: {x: 0.09571949, y: -0.2898453, z: -0.21057032, w: 0.9287021}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_LeftHandIndex2
       parentName: Wayne_LeftHandIndex1
-      position: {x: -0.003032076, y: -0.02826985, z: 0.03756282}
-      rotation: {x: -0.25728223, y: -0.28273594, z: -0.21699257, w: 0.89820963}
+      position: {x: -0.0030320766, y: -0.02826986, z: 0.037562814}
+      rotation: {x: -0.25728244, y: -0.28273645, z: -0.21699306, w: 0.8982093}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_LeftHandIndex3
       parentName: Wayne_LeftHandIndex2
-      position: {x: 0.02251752, y: -0.027980143, z: 0.007505241}
+      position: {x: 0.02251752, y: -0.027980145, z: 0.0075052534}
       rotation: {x: 0.000005750952, y: 0.10406457, z: -0.00008040662, w: 0.99457055}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_LeftHandIndex4
       parentName: Wayne_LeftHandIndex3
-      position: {x: 0.013452802, y: -0.020577362, z: 0.007226862}
+      position: {x: 0.013452802, y: -0.020577362, z: 0.0072268574}
       rotation: {x: 0.0000030135059, y: -0.25821826, z: -0.000019629522, w: 0.9660866}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_LeftHandMiddle1
       parentName: Wayne_LeftHand
-      position: {x: -0.09130383, y: -0.05888842, z: 0.03961506}
-      rotation: {x: -0.03622454, y: -0.19000967, z: -0.36615458, w: 0.910228}
+      position: {x: -0.09130383, y: -0.058888443, z: 0.03961507}
+      rotation: {x: -0.03622495, y: -0.19000903, z: -0.36615396, w: 0.9102284}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_LeftHandMiddle2
       parentName: Wayne_LeftHandMiddle1
-      position: {x: 0.0037343376, y: -0.051669233, z: 0.026455287}
-      rotation: {x: -0.027864225, y: -0.075146236, z: -0.14295052, w: 0.9864795}
+      position: {x: 0.0037343365, y: -0.05166924, z: 0.026455285}
+      rotation: {x: -0.02786406, y: -0.07514592, z: -0.14295048, w: 0.9864795}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_LeftHandMiddle3
       parentName: Wayne_LeftHandMiddle2
-      position: {x: 0.015083191, y: -0.028439399, z: 0.0120232785}
-      rotation: {x: -0.035855558, y: -0.10184979, z: -0.19541672, w: 0.97475815}
+      position: {x: 0.015083191, y: -0.028439365, z: 0.012023272}
+      rotation: {x: -0.035855148, y: -0.10185066, z: -0.1954196, w: 0.97475743}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_LeftHandMiddle4
       parentName: Wayne_LeftHandMiddle3
-      position: {x: 0.022531265, y: -0.0155029, z: 0.003921487}
+      position: {x: 0.022531265, y: -0.015502901, z: 0.003921483}
       rotation: {x: 0.0000000029929297, y: 0.00015547978, z: 0.000019249639, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_LeftHandPinky1
       parentName: Wayne_LeftHand
-      position: {x: -0.07350034, y: -0.08272747, z: -0.032206338}
-      rotation: {x: -0.10159427, y: -0.111152366, z: -0.3995286, w: 0.9042681}
+      position: {x: -0.07350034, y: -0.08272748, z: -0.032206338}
+      rotation: {x: -0.1015956, y: -0.111153014, z: -0.39953226, w: 0.9042662}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_LeftHandPinky2
       parentName: Wayne_LeftHandPinky1
-      position: {x: 0.0023359708, y: -0.04046612, z: 0.010668842}
-      rotation: {x: 0.23681238, y: -0.070849515, z: -0.32079846, w: 0.91432416}
+      position: {x: 0.0023359698, y: -0.040466122, z: 0.010668842}
+      rotation: {x: 0.23681214, y: -0.07084814, z: -0.3207984, w: 0.91432434}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_LeftHandPinky3
       parentName: Wayne_LeftHandPinky2
-      position: {x: 0.019120967, y: -0.013621475, z: 0.017127717}
-      rotation: {x: 0.048923787, y: -0.009348512, z: -0.061876252, w: 0.9968403}
+      position: {x: 0.019120965, y: -0.013621517, z: 0.017127719}
+      rotation: {x: 0.0489227, y: -0.009345143, z: -0.061873022, w: 0.9968406}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_LeftHandPinky4
       parentName: Wayne_LeftHandPinky3
-      position: {x: 0.015285718, y: -0.0052083135, z: 0.012849856}
+      position: {x: 0.015285717, y: -0.005208279, z: 0.01284986}
       rotation: {x: 0.000000020607823, y: 0.00062191905, z: 0.0001191295, w: 0.9999998}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_LeftHandRing1
       parentName: Wayne_LeftHand
-      position: {x: -0.07010917, y: -0.084001794, z: 0.010187654}
-      rotation: {x: -0.04726545, y: -0.08581914, z: -0.2366834, w: 0.96663445}
+      position: {x: -0.07010917, y: -0.084001854, z: 0.010187654}
+      rotation: {x: -0.047266018, y: -0.08581939, z: -0.23668481, w: 0.966634}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_LeftHandRing2
       parentName: Wayne_LeftHandRing1
-      position: {x: -0.010017259, y: -0.033550262, z: 0.014174892}
-      rotation: {x: 0.06449789, y: -0.1380592, z: -0.28131917, w: 0.94743824}
+      position: {x: -0.010017259, y: -0.033550262, z: 0.0141748935}
+      rotation: {x: 0.064498715, y: -0.1380609, z: -0.28132308, w: 0.94743675}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_LeftHandRing3
       parentName: Wayne_LeftHandRing2
-      position: {x: 0.013223467, y: -0.025278714, z: 0.015442911}
-      rotation: {x: 0.15919252, y: -0.036512256, z: -0.1958479, w: 0.9669375}
+      position: {x: 0.013223466, y: -0.025278678, z: 0.015442914}
+      rotation: {x: 0.1591947, y: -0.036514528, z: -0.19585098, w: 0.96693647}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_LeftHandRing4
       parentName: Wayne_LeftHandRing3
-      position: {x: 0.02071469, y: -0.009508742, z: 0.018595694}
+      position: {x: 0.02071469, y: -0.0095087085, z: 0.018595692}
       rotation: {x: 0.0000000029929297, y: 0.00015547978, z: 0.000019249639, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_LeftHandThumb1
       parentName: Wayne_LeftHand
-      position: {x: 0.005845484, y: -0.012314786, z: 0.03929308}
-      rotation: {x: 0.018141482, y: -0.06784494, z: -0.009113877, w: 0.99748933}
+      position: {x: 0.005845484, y: -0.012314815, z: 0.039293088}
+      rotation: {x: 0.018146083, y: -0.067835845, z: -0.009112288, w: 0.99748987}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_LeftHandThumb2
       parentName: Wayne_LeftHandThumb1
-      position: {x: -0.0028336528, y: -0.00527492, z: 0.034466308}
-      rotation: {x: -0.30999622, y: -0.048294965, z: -0.07453499, w: 0.94658047}
+      position: {x: -0.0028336528, y: -0.0052749277, z: 0.034466304}
+      rotation: {x: -0.30999607, y: -0.048302125, z: -0.07453786, w: 0.9465799}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_LeftHandThumb3
       parentName: Wayne_LeftHandThumb2
-      position: {x: 0.0022152138, y: -0.02394811, z: 0.021508712}
-      rotation: {x: -0.333612, y: 0.0018344853, z: 0.036319036, w: 0.94200885}
+      position: {x: 0.002215209, y: -0.023948098, z: 0.021508727}
+      rotation: {x: -0.33361292, y: 0.0018354238, z: 0.036325287, w: 0.94200826}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_LeftHandThumb4
       parentName: Wayne_LeftHandThumb3
-      position: {x: -0.00024488583, y: -0.04565163, z: -0.000000062212926}
+      position: {x: -0.0002448905, y: -0.04565165, z: -0.00000007258641}
       rotation: {x: 0, y: 0, z: 0.000063111176, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Neck
       parentName: Wayne_Spine2
-      position: {x: 3.6469287e-12, y: 0.20187224, z: -0.09896191}
+      position: {x: -0, y: 0.20187224, z: -0.098961964}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_Head
       parentName: Wayne_Neck
-      position: {x: 1.17463e-11, y: 0.45549738, z: 0.00000009909118}
+      position: {x: -0, y: 0.4554976, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_RightShoulder
       parentName: Wayne_Spine2
-      position: {x: 0.09069669, y: 0.12685612, z: -0.09851541}
-      rotation: {x: 0.0015509072, y: -0.015366297, z: 0.07592701, w: 0.9969938}
+      position: {x: 0.090696685, y: 0.12685607, z: -0.09851544}
+      rotation: {x: 0.0015567, y: -0.015353651, z: 0.07592175, w: 0.9969944}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_RightArm
       parentName: Wayne_RightShoulder
-      position: {x: 0.1681676, y: -0.08611925, z: -0.020864047}
-      rotation: {x: 0.028921638, y: 0.10241687, z: 0.2558051, w: 0.96085286}
+      position: {x: 0.1681676, y: -0.08611923, z: -0.020864028}
+      rotation: {x: 0.028910596, y: 0.10244064, z: 0.25581303, w: 0.9608485}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_LeafRightArmRoll1
       parentName: Wayne_RightArm
-      position: {x: 0.034514524, y: -0.030716898, z: 0.0083969915}
+      position: {x: 0.034514528, y: -0.030717002, z: 0.008397}
       rotation: {x: 0, y: 0, z: 0.0001416206, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_RightForeArm
       parentName: Wayne_RightArm
-      position: {x: 0.34515193, y: -0.30714893, z: 0.08401666}
-      rotation: {x: 0.014387199, y: 0.021753917, z: 0.01462423, w: 0.99955285}
+      position: {x: 0.34515163, y: -0.3071494, z: 0.08401595}
+      rotation: {x: 0.014408944, y: 0.021768797, z: 0.0145851225, w: 0.99955285}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_RightHand
       parentName: Wayne_RightForeArm
-      position: {x: 0.18802324, y: -0.17364521, z: 0.0741314}
-      rotation: {x: 0.0000071408913, y: 0.000008195743, z: -0.00044326397, w: 0.99999994}
+      position: {x: 0.18802328, y: -0.17364521, z: 0.07413138}
+      rotation: {x: 0.000002402308, y: 0.0000027571496, z: -0.00043103838, w: 0.99999994}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_RightHandIndex1
       parentName: Wayne_RightHand
-      position: {x: 0.16714999, y: -0.14241482, z: 0.124354236}
+      position: {x: 0.16714998, y: -0.14241482, z: 0.12435424}
       rotation: {x: 0.000012005401, y: -0.017452966, z: 0.0006877667, w: 0.9998475}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_RightHandIndex2
       parentName: Wayne_RightHandIndex1
-      position: {x: 0.026759729, y: -0.016258342, z: 0.011848693}
-      rotation: {x: -0.111458674, y: 0.13572401, z: 0.26187748, w: 0.94898695}
+      position: {x: 0.026759729, y: -0.016258346, z: 0.011848689}
+      rotation: {x: -0.11145839, y: 0.13572398, z: 0.2618765, w: 0.94898725}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_RightHandIndex3
       parentName: Wayne_RightHandIndex2
-      position: {x: 0.008823609, y: -0.028840873, z: 0.010701601}
-      rotation: {x: -0.047667976, y: -0.17758207, z: -0.013755992, w: 0.9828546}
+      position: {x: 0.00882361, y: -0.028840913, z: 0.010701594}
+      rotation: {x: -0.04766805, y: -0.1775822, z: -0.013756376, w: 0.98285455}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_RightHandIndex4
       parentName: Wayne_RightHandIndex3
-      position: {x: 0.009616165, y: -0.022283897, z: 0.0012149658}
+      position: {x: 0.0096161645, y: -0.022283861, z: 0.0012149609}
       rotation: {x: -0.0000010593003, y: 0.08715856, z: -0.000060685306, w: 0.9961945}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_RightHandMiddle1
       parentName: Wayne_RightHand
-      position: {x: 0.1751476, y: -0.15663038, z: 0.08560834}
-      rotation: {x: -0.01029837, y: -0.016528666, z: 0.024479408, w: 0.99951065}
+      position: {x: 0.1751476, y: -0.1566304, z: 0.085608326}
+      rotation: {x: -0.010298678, y: -0.016528653, z: 0.024480168, w: 0.99951065}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_RightHandMiddle2
       parentName: Wayne_RightHandMiddle1
-      position: {x: 0.02294033, y: -0.031465974, z: 0.0106838215}
-      rotation: {x: -0.07278113, y: 0.1201413, z: 0.2138634, w: 0.9667117}
+      position: {x: 0.02294033, y: -0.031466015, z: 0.010683823}
+      rotation: {x: -0.07278267, y: 0.12014113, z: 0.21386464, w: 0.96671134}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_RightHandMiddle3
       parentName: Wayne_RightHandMiddle2
-      position: {x: 0.0022070955, y: -0.032645535, z: 0.006543735}
-      rotation: {x: 0.0014752222, y: -0.14587604, z: 0.055267863, w: 0.9877568}
+      position: {x: 0.0022070946, y: -0.032645497, z: 0.006543737}
+      rotation: {x: 0.001475602, y: -0.14587745, z: 0.055260543, w: 0.98775697}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_RightHandMiddle4
       parentName: Wayne_RightHandMiddle3
-      position: {x: -0.0017507938, y: -0.027007924, z: 0.005543443}
+      position: {x: -0.0017507938, y: -0.027007928, z: 0.0055434466}
       rotation: {x: -0.0000010593003, y: 0.08715856, z: -0.000060685306, w: 0.9961945}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_RightHandPinky1
       parentName: Wayne_RightHand
-      position: {x: 0.1692902, y: -0.17887516, z: 0.0066677737}
-      rotation: {x: -0.13566045, y: -0.008829423, z: 0.30524793, w: 0.942519}
+      position: {x: 0.1692902, y: -0.17887518, z: 0.0066677714}
+      rotation: {x: -0.13566159, y: -0.008829391, z: 0.30525053, w: 0.942518}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_RightHandPinky2
       parentName: Wayne_RightHandPinky1
-      position: {x: 0.0016096309, y: -0.025373293, z: 0.001321606}
-      rotation: {x: -0.014592596, y: 0.094635986, z: 0.16666795, w: 0.98135257}
+      position: {x: 0.0016096303, y: -0.025373293, z: 0.0013216049}
+      rotation: {x: -0.014590715, y: 0.09463541, z: 0.16666177, w: 0.9813537}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_RightHandPinky3
       parentName: Wayne_RightHandPinky2
-      position: {x: -0.008250566, y: -0.023042534, z: -0.00023663181}
-      rotation: {x: -0.00315438, y: -0.15489036, z: 0.009667524, w: 0.9878794}
+      position: {x: -0.008250566, y: -0.023042534, z: -0.00023663235}
+      rotation: {x: -0.0031538154, y: -0.15489063, z: 0.009666135, w: 0.9878793}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_RightHandPinky4
       parentName: Wayne_RightHandPinky3
-      position: {x: -0.008120866, y: -0.017619817, z: 0.0014325515}
+      position: {x: -0.008120866, y: -0.017619817, z: 0.0014325525}
       rotation: {x: 0.0000078027715, y: 0.08715856, z: 0.00010084196, w: 0.9961945}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_RightHandRing1
       parentName: Wayne_RightHand
-      position: {x: 0.17278339, y: -0.17044416, z: 0.042988952}
-      rotation: {x: -0.0797754, y: -0.068403326, z: 0.07428815, w: 0.9916845}
+      position: {x: 0.17278337, y: -0.17044416, z: 0.042988952}
+      rotation: {x: -0.079776734, y: -0.0684034, z: 0.07429084, w: 0.99168426}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_RightHandRing2
       parentName: Wayne_RightHandRing1
-      position: {x: 0.01937332, y: -0.02885536, z: 0.0006513718}
-      rotation: {x: 0.029090032, y: 0.1277543, z: 0.32168177, w: 0.9377385}
+      position: {x: 0.019373318, y: -0.028855361, z: 0.00065137}
+      rotation: {x: 0.02908957, y: 0.12775321, z: 0.32167983, w: 0.9377394}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_RightHandRing3
       parentName: Wayne_RightHandRing2
-      position: {x: -0.0039801374, y: -0.028202767, z: 0.003981426}
-      rotation: {x: 0.034024432, y: -0.1465484, z: 0.083063096, w: 0.9851226}
+      position: {x: -0.0039801383, y: -0.028202806, z: 0.003981429}
+      rotation: {x: 0.034025747, y: -0.14654793, z: 0.08306609, w: 0.9851224}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_RightHandRing4
       parentName: Wayne_RightHandRing3
-      position: {x: -0.009555233, y: -0.028801216, z: 0.009346714}
+      position: {x: -0.009555233, y: -0.02880122, z: 0.009346717}
       rotation: {x: -0.0000010593003, y: 0.08715856, z: -0.000060685306, w: 0.9961945}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_RightHandThumb1
       parentName: Wayne_RightHand
-      position: {x: 0.048420075, y: -0.09835761, z: 0.12364992}
-      rotation: {x: -0.17438205, y: -0.059976317, z: 0.038004607, w: 0.9821148}
+      position: {x: 0.04842007, y: -0.09835762, z: 0.12364992}
+      rotation: {x: -0.17437428, y: -0.059980683, z: 0.037997317, w: 0.98211616}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_RightHandThumb2
       parentName: Wayne_RightHandThumb1
-      position: {x: 0.012841731, y: -0.024598122, z: 0.020574097}
-      rotation: {x: 0.010332842, y: 0.024413368, z: 0.019991865, w: 0.99944866}
+      position: {x: 0.012841731, y: -0.024598107, z: 0.020574093}
+      rotation: {x: 0.010332869, y: 0.024413377, z: 0.019991865, w: 0.99944866}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_RightHandThumb3
       parentName: Wayne_RightHandThumb2
-      position: {x: 0.008411187, y: -0.017820375, z: 0.016832234}
-      rotation: {x: -0.08999503, y: -0.078048, z: -0.037299227, w: 0.99217856}
+      position: {x: 0.008411184, y: -0.017820416, z: 0.016832232}
+      rotation: {x: -0.08999503, y: -0.07804759, z: -0.037298482, w: 0.9921786}
       scale: {x: 1, y: 1, z: 1}
     - name: Wayne_RightHandThumb4
       parentName: Wayne_RightHandThumb3
-      position: {x: 0.015977884, y: -0.024536736, z: 0.012611719}
-      rotation: {x: 0, y: 0, z: -0.0001082577, w: 1}
+      position: {x: 0.015977884, y: -0.024536699, z: 0.012611714}
+      rotation: {x: 0, y: -0, z: -0.0001082577, w: 1}
       scale: {x: 1, y: 1, z: 1}
     armTwist: 0.5
     foreArmTwist: 0.5
@@ -1345,12 +1347,12 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     globalScale: 1
-    rootMotionBoneName: Wayne_Ctrl_Reference
+    rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  autoGenerateAvatarMappingIfUnspecified: 0
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1
   avatarSetup: 1
