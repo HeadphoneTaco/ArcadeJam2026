@@ -20,6 +20,11 @@ public class BasicCarSpawner : MonoBehaviour
 
     [SerializeField] private float carSpawnInterval;
 
+    [Header("Bottle Spawning")]
+    [SerializeField] private GameObject bottlePrefab;
+    [SerializeField] private float bottleMoveSpeed = 0.7f;
+    [SerializeField] private float bottleSpawnYOffset;
+
     [Header("Rat Spawning")]
     [SerializeField] private bool spawnRats = true;
     [SerializeField] private GameObject[] ratPrefabs;
@@ -63,43 +68,123 @@ public class BasicCarSpawner : MonoBehaviour
     {
         while (_spawnCars)
         {
-            int spawnPointOne = Random.Range(0, carSpawnPositions.Length);
-            int spawnPointTwo = Random.Range(0, carSpawnPositions.Length);
-            int spawnPointThree = Random.Range(0, carSpawnPositions.Length);
-
-            while (spawnPointTwo == spawnPointOne)
+            if (carSpawnPositions == null || carSpawnPositions.Length == 0)
             {
-                spawnPointTwo = Random.Range(0, carSpawnPositions.Length);
-            }
-            while (spawnPointThree == spawnPointTwo || spawnPointThree == spawnPointOne)
-            {
-                spawnPointThree = Random.Range(0, carSpawnPositions.Length);
+                yield return new WaitForSeconds(carSpawnInterval);
+                continue;
             }
 
-            int howManyCarsToSpawn = Random.Range(1, 4);
+            List<int> selectedCarSpawnPoints = GetRandomSpawnPointIndexes(Mathf.Min(3, carSpawnPositions.Length));
 
-            switch (howManyCarsToSpawn)
+            if (selectedCarSpawnPoints.Count == 0)
             {
-                case 1:
-                    Instantiate(carPrefabs[Random.Range(0, carPrefabs.Length)], carSpawnPositions[spawnPointOne].transform.position, Quaternion.identity);
-                    break;
-
-                case 2:
-                    Instantiate(carPrefabs[Random.Range(0, carPrefabs.Length)], carSpawnPositions[spawnPointOne].transform.position, Quaternion.identity);
-                    Instantiate(carPrefabs[Random.Range(0, carPrefabs.Length)], carSpawnPositions[spawnPointTwo].transform.position, Quaternion.identity);
-                    break;
-
-                case 3:
-                    Instantiate(carPrefabs[Random.Range(0, carPrefabs.Length)], carSpawnPositions[spawnPointOne].transform.position, Quaternion.identity);
-                    Instantiate(carPrefabs[Random.Range(0, carPrefabs.Length)], carSpawnPositions[spawnPointTwo].transform.position, Quaternion.identity);
-                    Instantiate(carPrefabs[Random.Range(0, carPrefabs.Length)], carSpawnPositions[spawnPointThree].transform.position, Quaternion.identity);
-                    break;
-                default:
-                    break;
+                yield return new WaitForSeconds(carSpawnInterval);
+                continue;
             }
+
+            int howManyCarsToSpawn = Random.Range(1, selectedCarSpawnPoints.Count + 1);
+
+            for (int i = 0; i < howManyCarsToSpawn; i++)
+            {
+                SpawnCarAt(selectedCarSpawnPoints[i]);
+            }
+
+            SpawnBottleInOpenSpawnPoint(selectedCarSpawnPoints, howManyCarsToSpawn);
 
             yield return new WaitForSeconds(carSpawnInterval);
         }
+    }
+
+    private List<int> GetRandomSpawnPointIndexes(int amount)
+    {
+        List<int> availableSpawnPoints = new List<int>();
+
+        for (int i = 0; i < carSpawnPositions.Length; i++)
+        {
+            if (carSpawnPositions[i] != null)
+            {
+                availableSpawnPoints.Add(i);
+            }
+        }
+
+        List<int> selectedSpawnPoints = new List<int>();
+
+        while (selectedSpawnPoints.Count < amount && availableSpawnPoints.Count > 0)
+        {
+            int availableIndex = Random.Range(0, availableSpawnPoints.Count);
+            selectedSpawnPoints.Add(availableSpawnPoints[availableIndex]);
+            availableSpawnPoints.RemoveAt(availableIndex);
+        }
+
+        return selectedSpawnPoints;
+    }
+
+    private void SpawnCarAt(int spawnPointIndex)
+    {
+        if (carPrefabs == null || carPrefabs.Length == 0)
+        {
+            return;
+        }
+
+        GameObject carPrefab = carPrefabs[Random.Range(0, carPrefabs.Length)];
+
+        if (carPrefab == null)
+        {
+            return;
+        }
+
+        Instantiate(carPrefab, carSpawnPositions[spawnPointIndex].transform.position, Quaternion.identity);
+    }
+
+    private void SpawnBottleInOpenSpawnPoint(List<int> selectedCarSpawnPoints, int spawnedCarCount)
+    {
+        if (bottlePrefab == null || carSpawnPositions == null || carSpawnPositions.Length == 0)
+        {
+            return;
+        }
+
+        List<int> openSpawnPoints = new List<int>();
+
+        for (int i = 0; i < carSpawnPositions.Length; i++)
+        {
+            if (carSpawnPositions[i] == null)
+            {
+                continue;
+            }
+
+            bool hasCar = false;
+
+            for (int j = 0; j < spawnedCarCount; j++)
+            {
+                if (selectedCarSpawnPoints[j] == i)
+                {
+                    hasCar = true;
+                    break;
+                }
+            }
+
+            if (!hasCar)
+            {
+                openSpawnPoints.Add(i);
+            }
+        }
+
+        if (openSpawnPoints.Count == 0)
+        {
+            return;
+        }
+
+        int spawnPointIndex = openSpawnPoints[Random.Range(0, openSpawnPoints.Count)];
+        Vector3 bottleSpawnPosition = carSpawnPositions[spawnPointIndex].transform.position + Vector3.up * bottleSpawnYOffset;
+        GameObject bottle = Instantiate(bottlePrefab, bottleSpawnPosition, Quaternion.identity);
+        BottlePickup bottlePickup = bottle.GetComponent<BottlePickup>();
+
+        if (bottlePickup == null)
+        {
+            bottlePickup = bottle.AddComponent<BottlePickup>();
+        }
+
+        bottlePickup.Initialize(bottleMoveSpeed);
     }
 
     private IEnumerator SpawnRatsWithDelay()

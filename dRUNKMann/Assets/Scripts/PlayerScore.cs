@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerScore : MonoBehaviour
 {
     public float playerScore;
+    public int bottleCount;
     public float playerSpeedModifier;
     [SerializeField] private BasicMovementScript basicMovement;
     [SerializeField] private float playerSpeedModifierMultiplier = .05f;
@@ -42,6 +43,11 @@ public class PlayerScore : MonoBehaviour
     {
         playerScore += amount;
         IncreasePlayerSpeed();
+    }
+
+    public void AddBottle()
+    {
+        bottleCount++;
     }
 
     void IncreasePlayerSpeed()
