@@ -5,10 +5,9 @@ public class RatMover : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 12f;
     [SerializeField] private Vector3 moveDirection = Vector3.back;
-    [Tooltip("Assign the BoxCollider trigger that should count as the rat's actual player/blocker hitbox.")]
-    [SerializeField] private BoxCollider hitTrigger;
+    [Tooltip("Assign the solid BoxCollider that should restart the scene when it collides with the player.")]
+    [SerializeField] private BoxCollider hitCollider;
     [SerializeField] private int destroyLayer = 8;
-    [SerializeField] private int playerHazardLayer = 7;
     [SerializeField] private string playerTag = "Player";
 
     private Rigidbody ratRb;
@@ -16,7 +15,6 @@ public class RatMover : MonoBehaviour
 
     private void Awake()
     {
-        gameObject.layer = playerHazardLayer;
         ratRb = GetComponent<Rigidbody>();
 
         if (ratRb == null)
@@ -28,8 +26,6 @@ public class RatMover : MonoBehaviour
         ratRb.isKinematic = true;
         ratRb.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
         ratRb.interpolation = RigidbodyInterpolation.Interpolate;
-
-        SetupAssignedTrigger();
     }
 
     public void Initialize(float speed, Vector3 direction)
@@ -52,7 +48,35 @@ public class RatMover : MonoBehaviour
         }
     }
 
-    public void HandleTriggerHit(GameObject other)
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (!DidCollisionUseHitCollider(collision))
+        {
+            return;
+        }
+
+        HandleCollisionHit(collision.gameObject);
+    }
+
+    private bool DidCollisionUseHitCollider(Collision collision)
+    {
+        if (hitCollider == null)
+        {
+            return false;
+        }
+
+        for (int i = 0; i < collision.contactCount; i++)
+        {
+            if (collision.GetContact(i).thisCollider == hitCollider)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private void HandleCollisionHit(GameObject other)
     {
         if (other.layer == destroyLayer)
         {
@@ -65,26 +89,5 @@ public class RatMover : MonoBehaviour
             isReloadingScene = true;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
-    }
-
-    private void SetupAssignedTrigger()
-    {
-        if (hitTrigger == null)
-        {
-            Debug.LogWarning($"{name} is missing a rat hit trigger. Assign a BoxCollider trigger on the RatMover component.", this);
-            return;
-        }
-
-        hitTrigger.isTrigger = true;
-        hitTrigger.gameObject.layer = playerHazardLayer;
-
-        RatHitTrigger triggerForwarder = hitTrigger.GetComponent<RatHitTrigger>();
-
-        if (triggerForwarder == null)
-        {
-            triggerForwarder = hitTrigger.gameObject.AddComponent<RatHitTrigger>();
-        }
-
-        triggerForwarder.Initialize(this);
     }
 }

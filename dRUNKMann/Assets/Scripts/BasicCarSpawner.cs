@@ -143,7 +143,7 @@ public class BasicCarSpawner : MonoBehaviour
             if (ratMover == null)
             {
                 ratMover = rat.AddComponent<RatMover>();
-                Debug.LogWarning($"{ratPrefab.name} is missing a RatMover component. Add RatMover to the rat prefab and assign its hit trigger box in the inspector.", rat);
+                Debug.LogWarning($"{ratPrefab.name} is missing a RatMover component. Add RatMover to the rat prefab and assign its solid hit box collider in the inspector.", rat);
             }
 
             Vector3 moveDirection = useRatSpawnPointForward ? spawnPosition.forward : ratMoveDirection;
