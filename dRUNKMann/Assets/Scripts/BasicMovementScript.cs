@@ -232,12 +232,8 @@ public class BasicMovementScript : MonoBehaviour
 
     private Vector3 GetMoveDirection()
     {
-        if (moveInput.sqrMagnitude <= movementInputDeadZone * movementInputDeadZone)
-        {
-            return Vector3.zero;
-        }
-
-        return new Vector3(moveInput.x, 0f, moveInput.y).normalized;
+        float sideInput = Mathf.Abs(moveInput.x) > movementInputDeadZone ? moveInput.x : 0f;
+        return new Vector3(sideInput, 0f, 1f).normalized;
     }
 
     private bool IsPressingSideways()
