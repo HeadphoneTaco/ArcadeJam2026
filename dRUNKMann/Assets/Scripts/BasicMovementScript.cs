@@ -35,6 +35,7 @@ public class BasicMovementScript : MonoBehaviour
     [SerializeField] private float diveLeanAngle = 55f;
     [SerializeField] private float diveLeanInDuration = 0.2f;
     [SerializeField] private float diveAirSpinTorque = 8f;
+    [SerializeField] private float diveCooldown = 0.75f;
     [SerializeField] private float groundCheckSphereVerticalOffset;
     [SerializeField] private float groundCheckSphereRadius = 2f;
     [SerializeField] private GameObject playerCapsule;
@@ -55,6 +56,9 @@ public class BasicMovementScript : MonoBehaviour
     private Vector3 stopStartVelocity;
     private bool wasTryingToMove;
     private bool isRandomlyStopping;
+    private float nextDiveAllowedTime;
+    private Coroutine diveLeanCoroutine;
+    private Coroutine diveRecoveryCoroutine;
 
     private void Awake()
     {
@@ -77,30 +81,61 @@ public class BasicMovementScript : MonoBehaviour
 
     public void Dive(InputAction.CallbackContext context)
     {
-        if (context.performed && IsGrounded())
+        if (!context.performed || !CanStartDive())
         {
-            isPlayerRagdoll = true;
-            rb.constraints = RigidbodyConstraints.None;
-            //rb.maxLinearVelocity = maxDiveVelocity;
-            _shouldPlayerUseDiveVelocity = true;
-            Vector3 diveDirection = GetMoveDirection();
+            return;
+        }
+
+        StartDive();
+    }
+
+    private bool CanStartDive()
+    {
+        return !isPlayerRagdoll && Time.time >= nextDiveAllowedTime && IsGrounded();
+    }
+
+    private void StartDive()
+    {
+        isPlayerRagdoll = true;
+        nextDiveAllowedTime = Time.time + diveCooldown;
+        rb.constraints = RigidbodyConstraints.None;
+        //rb.maxLinearVelocity = maxDiveVelocity;
+        _shouldPlayerUseDiveVelocity = true;
+        isRandomlyStopping = false;
+        stopTimeElapsed = 0f;
+        sideLeanVelocity = 0f;
+
+        Vector3 currentVelocity = rb.linearVelocity;
+        rb.linearVelocity = new Vector3(currentVelocity.x, 0f, currentVelocity.z);
+
+        Vector3 diveDirection = GetMoveDirection();
+
+        if (diveDirection.sqrMagnitude <= 0f)
+        {
+            Vector3 forward = transform.forward;
+            diveDirection = new Vector3(forward.x, 0f, forward.z).normalized;
 
             if (diveDirection.sqrMagnitude <= 0f)
             {
-                Vector3 forward = transform.forward;
-                diveDirection = new Vector3(forward.x, 0f, forward.z).normalized;
-
-                if (diveDirection.sqrMagnitude <= 0f)
-                {
-                    diveDirection = Vector3.forward;
-                }
+                diveDirection = Vector3.forward;
             }
-
-            rb.AddForce(new Vector3(diveDirection.x * diveDirectionalStrength, diveHeight, diveDirection.z * diveDirectionalStrength), ForceMode.Impulse);
-            rb.AddTorque(GetDiveTorque(diveDirection), ForceMode.Impulse);
-            StartCoroutine(LeanIntoDive(diveDirection));
-            StartCoroutine(ResetPlayerRotationAfterDiving());
         }
+
+        rb.AddForce(new Vector3(diveDirection.x * diveDirectionalStrength, diveHeight, diveDirection.z * diveDirectionalStrength), ForceMode.Impulse);
+        rb.AddTorque(GetDiveTorque(diveDirection), ForceMode.Impulse);
+
+        if (diveLeanCoroutine != null)
+        {
+            StopCoroutine(diveLeanCoroutine);
+        }
+
+        if (diveRecoveryCoroutine != null)
+        {
+            StopCoroutine(diveRecoveryCoroutine);
+        }
+
+        diveLeanCoroutine = StartCoroutine(LeanIntoDive(diveDirection));
+        diveRecoveryCoroutine = StartCoroutine(ResetPlayerRotationAfterDiving());
     }
 
     bool IsGrounded()
@@ -273,6 +308,8 @@ public class BasicMovementScript : MonoBehaviour
 
             yield return null;
         }
+
+        diveLeanCoroutine = null;
     }
 
     private Vector3 GetDiveTorque(Vector3 diveDirection)
@@ -304,6 +341,8 @@ public class BasicMovementScript : MonoBehaviour
         _shouldPlayerUseDiveVelocity = false;
         rb.constraints = rbDefaultConstraints;
         isPlayerRagdoll = false;
+        nextDiveAllowedTime = Mathf.Max(nextDiveAllowedTime, Time.time + diveCooldown);
+        diveRecoveryCoroutine = null;
     }
 
     private void LimitHorizontalVelocity()
