@@ -48,6 +48,13 @@ public class BasicCarSpawner : MonoBehaviour
     void Start()
     {
         FillRatDefaults();
+
+        if (playerCapsule == null)
+        {
+            enabled = false;
+            return;
+        }
+
         _offset = transform.position - playerCapsule.transform.position;
         _spawnCars = true;
 
@@ -61,6 +68,11 @@ public class BasicCarSpawner : MonoBehaviour
 
     void Update()
     {
+        if (playerCapsule == null)
+        {
+            return;
+        }
+
         transform.position = new Vector3(transform.position.x, transform.position.y, playerCapsule.transform.position.z + _offset.z); 
     }
 

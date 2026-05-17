@@ -24,13 +24,14 @@ public class PlayerScore : MonoBehaviour
 
     void Awake()
     {
-        if (Instance != null && Instance != this)
+        Instance = this;
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this)
         {
-            Destroy(gameObject);
-        }
-        else
-        {
-            Instance = this;
+            Instance = null;
         }
     }
 

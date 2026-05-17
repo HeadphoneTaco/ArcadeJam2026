@@ -59,6 +59,7 @@ public class BasicMovementScript : MonoBehaviour
     private float nextDiveAllowedTime;
     private Coroutine diveLeanCoroutine;
     private Coroutine diveRecoveryCoroutine;
+    private bool areFootstepsPlaying;
 
     private void Awake()
     {
@@ -97,6 +98,8 @@ public class BasicMovementScript : MonoBehaviour
     private void StartDive()
     {
         isPlayerRagdoll = true;
+        GameSfxPlayer.PlayGuyRollingSfx();
+        SetFootstepsPlaying(false);
         nextDiveAllowedTime = Time.time + diveCooldown;
         rb.constraints = RigidbodyConstraints.None;
         //rb.maxLinearVelocity = maxDiveVelocity;
@@ -162,6 +165,12 @@ public class BasicMovementScript : MonoBehaviour
         }
 
         LimitHorizontalVelocity();
+        UpdateFootsteps();
+    }
+
+    private void OnDisable()
+    {
+        SetFootstepsPlaying(false);
     }
 
     private bool CanApplyNormalMovement()
@@ -339,6 +348,22 @@ public class BasicMovementScript : MonoBehaviour
         isPlayerRagdoll = false;
         nextDiveAllowedTime = Mathf.Max(nextDiveAllowedTime, Time.time + diveCooldown);
         diveRecoveryCoroutine = null;
+    }
+
+    private void UpdateFootsteps()
+    {
+        SetFootstepsPlaying(!isPlayerRagdoll && IsGrounded());
+    }
+
+    private void SetFootstepsPlaying(bool shouldPlay)
+    {
+        if (areFootstepsPlaying == shouldPlay)
+        {
+            return;
+        }
+
+        areFootstepsPlaying = shouldPlay;
+        GameSfxPlayer.SetFootstepsPlaying(shouldPlay);
     }
 
     private void LimitHorizontalVelocity()

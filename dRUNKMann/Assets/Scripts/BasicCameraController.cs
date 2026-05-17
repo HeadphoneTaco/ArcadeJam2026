@@ -8,11 +8,22 @@ public class BasicCameraController : MonoBehaviour
 
     void Start()
     {
+        if (playerCapsule == null)
+        {
+            enabled = false;
+            return;
+        }
+
         _offset = transform.position - playerCapsule.transform.position;
     }
 
     void Update()
     {
+        if (playerCapsule == null)
+        {
+            return;
+        }
+
         transform.position = playerCapsule.transform.position + _offset;
     }
 }

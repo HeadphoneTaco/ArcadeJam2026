@@ -16,6 +16,7 @@ public class NearMiss : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             isInNearMissZone = true;
+            PlayPassingSfx();
         }
     }
 
@@ -26,6 +27,17 @@ public class NearMiss : MonoBehaviour
             isInNearMissZone = false;
 
         }
+    }
+
+    private void PlayPassingSfx()
+    {
+        if (GetComponentInParent<RatMover>() != null || transform.root.name.ToLowerInvariant().Contains("rat"))
+        {
+            GameSfxPlayer.PlayRatsPassingSfx();
+            return;
+        }
+
+        GameSfxPlayer.PlayCarsPassingSfx();
     }
 
     private void Update()

@@ -56,6 +56,7 @@ public class BottlePickup : MonoBehaviour
         }
 
         wasCollected = true;
+        GameSfxPlayer.PlayBottleCollectSfx();
 
         if (PlayerScore.Instance != null)
         {

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class RatMover : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class RatMover : MonoBehaviour
     [SerializeField] private BoxCollider hitCollider;
     [SerializeField] private int destroyLayer = 8;
     [SerializeField] private string playerTag = "Player";
+    [SerializeField] private float sceneReloadDelay = 0.25f;
 
     private Rigidbody ratRb;
     private bool isReloadingScene;
@@ -87,7 +89,15 @@ public class RatMover : MonoBehaviour
         if (!isReloadingScene && other.CompareTag(playerTag))
         {
             isReloadingScene = true;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            GameSfxPlayer.PlayRatHitSfx();
+            GameSfxPlayer.PlayDeathSfx();
+            StartCoroutine(ReloadActiveSceneAfterDelay());
         }
+    }
+
+    private IEnumerator ReloadActiveSceneAfterDelay()
+    {
+        yield return new WaitForSeconds(sceneReloadDelay);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
