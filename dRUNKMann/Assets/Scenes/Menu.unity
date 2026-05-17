@@ -191,7 +191,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: f6fa21637d648c84d90ea9c349e60fb4, type: 3}
+  m_Resource: {fileID: 8300000, guid: bc110511abd25eb4081e54b8a2a8ae27, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -933,7 +933,7 @@ MonoBehaviour:
   playButton: {fileID: 625229748}
   quitButton: {fileID: 2036834769}
   menuAudioSource: {fileID: 315509265}
-  gameMusicClip: {fileID: 8300000, guid: 0a26e7f0eda649c46b1daa651cebf4d1, type: 3}
+  gameMusicClip: {fileID: 8300000, guid: 97ddd202f26820248aba9b9dd11f5050, type: 3}
 --- !u!1 &1202777903
 GameObject:
   m_ObjectHideFlags: 0
