@@ -148,13 +148,22 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Confirm",
+                    "type": "Button",
+                    "id": "73ac9822-1d5b-4752-8984-00636059ee1c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
                     "name": "",
                     "id": "4f5697bc-c801-4303-9f69-4c283a320e43",
-                    "path": "<Keyboard>/upArrow",
+                    "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -165,7 +174,7 @@
                 {
                     "name": "",
                     "id": "854f6d7f-6776-4874-97f2-9257b902d3b8",
-                    "path": "<Gamepad>/buttonSouth",
+                    "path": "<Gamepad>/dpad/up",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -176,7 +185,7 @@
                 {
                     "name": "",
                     "id": "bab94928-3c2b-409f-81fc-fc318ecb1fe4",
-                    "path": "<Keyboard>/downArrow",
+                    "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -187,11 +196,33 @@
                 {
                     "name": "",
                     "id": "94e8aed5-cc94-4b4f-b8fa-8e3eecc62cf1",
-                    "path": "<Gamepad>/buttonWest",
+                    "path": "<Gamepad>/dpad/down",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Quit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a5777c09-2007-4de6-b974-c4359542cc28",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Confirm",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f34d0948-392c-4735-9005-cb41687a6d06",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Confirm",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

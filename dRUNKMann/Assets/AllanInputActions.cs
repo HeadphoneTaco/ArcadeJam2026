@@ -234,13 +234,22 @@ public partial class @AllanInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Confirm"",
+                    ""type"": ""Button"",
+                    ""id"": ""73ac9822-1d5b-4752-8984-00636059ee1c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
                     ""id"": ""4f5697bc-c801-4303-9f69-4c283a320e43"",
-                    ""path"": ""<Keyboard>/upArrow"",
+                    ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -251,7 +260,7 @@ public partial class @AllanInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""854f6d7f-6776-4874-97f2-9257b902d3b8"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""path"": ""<Gamepad>/dpad/up"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -262,7 +271,7 @@ public partial class @AllanInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""bab94928-3c2b-409f-81fc-fc318ecb1fe4"",
-                    ""path"": ""<Keyboard>/downArrow"",
+                    ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -273,11 +282,33 @@ public partial class @AllanInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""94e8aed5-cc94-4b4f-b8fa-8e3eecc62cf1"",
-                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""path"": ""<Gamepad>/dpad/down"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Quit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a5777c09-2007-4de6-b974-c4359542cc28"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Confirm"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f34d0948-392c-4735-9005-cb41687a6d06"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Confirm"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -294,6 +325,7 @@ public partial class @AllanInputActions: IInputActionCollection2, IDisposable
         m_MainMenu = asset.FindActionMap("MainMenu", throwIfNotFound: true);
         m_MainMenu_Play = m_MainMenu.FindAction("Play", throwIfNotFound: true);
         m_MainMenu_Quit = m_MainMenu.FindAction("Quit", throwIfNotFound: true);
+        m_MainMenu_Confirm = m_MainMenu.FindAction("Confirm", throwIfNotFound: true);
     }
 
     ~@AllanInputActions()
@@ -484,6 +516,7 @@ public partial class @AllanInputActions: IInputActionCollection2, IDisposable
     private List<IMainMenuActions> m_MainMenuActionsCallbackInterfaces = new List<IMainMenuActions>();
     private readonly InputAction m_MainMenu_Play;
     private readonly InputAction m_MainMenu_Quit;
+    private readonly InputAction m_MainMenu_Confirm;
     /// <summary>
     /// Provides access to input actions defined in input action map "MainMenu".
     /// </summary>
@@ -503,6 +536,10 @@ public partial class @AllanInputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "MainMenu/Quit".
         /// </summary>
         public InputAction @Quit => m_Wrapper.m_MainMenu_Quit;
+        /// <summary>
+        /// Provides access to the underlying input action "MainMenu/Confirm".
+        /// </summary>
+        public InputAction @Confirm => m_Wrapper.m_MainMenu_Confirm;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -535,6 +572,9 @@ public partial class @AllanInputActions: IInputActionCollection2, IDisposable
             @Quit.started += instance.OnQuit;
             @Quit.performed += instance.OnQuit;
             @Quit.canceled += instance.OnQuit;
+            @Confirm.started += instance.OnConfirm;
+            @Confirm.performed += instance.OnConfirm;
+            @Confirm.canceled += instance.OnConfirm;
         }
 
         /// <summary>
@@ -552,6 +592,9 @@ public partial class @AllanInputActions: IInputActionCollection2, IDisposable
             @Quit.started -= instance.OnQuit;
             @Quit.performed -= instance.OnQuit;
             @Quit.canceled -= instance.OnQuit;
+            @Confirm.started -= instance.OnConfirm;
+            @Confirm.performed -= instance.OnConfirm;
+            @Confirm.canceled -= instance.OnConfirm;
         }
 
         /// <summary>
@@ -628,5 +671,12 @@ public partial class @AllanInputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnQuit(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Confirm" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnConfirm(InputAction.CallbackContext context);
     }
 }
