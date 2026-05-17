@@ -7607,7 +7607,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carRb: {fileID: 376728253}
-  carVelocity: 0.7
+  carVelocity: 0.5
 --- !u!65 &376728255
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15169,7 +15169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carRb: {fileID: 704646717}
-  carVelocity: 0.8
+  carVelocity: 0.5
 --- !u!1 &709125747
 GameObject:
   m_ObjectHideFlags: 0
@@ -15482,7 +15482,7 @@ MonoBehaviour:
   - {fileID: 1667581115}
   carSpawnInterval: 3
   bottlePrefab: {fileID: 6021875777302631202, guid: d3269068ecf1b1b42964b2f1f2c240cf, type: 3}
-  bottleMoveSpeed: 0.2
+  bottleMoveSpeed: 0.5
   bottleSpawnYOffset: -2.5
   spawnRats: 1
   ratPrefabs:
@@ -23958,7 +23958,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carRb: {fileID: 1143269066}
-  carVelocity: 0.9
+  carVelocity: 0.5
 --- !u!65 &1143269068
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -37773,7 +37773,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carRb: {fileID: 1667581116}
-  carVelocity: 0.9
+  carVelocity: 0.5
 --- !u!65 &1667581118
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -39824,7 +39824,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carRb: {fileID: 1777400617}
-  carVelocity: 0.8
+  carVelocity: 0.5
 --- !u!65 &1777400619
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -48303,6 +48303,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 38369679438480818, guid: d3269068ecf1b1b42964b2f1f2c240cf, type: 3}
+      propertyPath: moveSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6021875777302631202, guid: d3269068ecf1b1b42964b2f1f2c240cf, type: 3}
       propertyPath: m_Name
       value: Bottle
