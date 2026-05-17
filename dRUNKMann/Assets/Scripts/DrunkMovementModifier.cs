@@ -30,10 +30,16 @@ public class DrunkMovementModifier : MonoBehaviour
     {
         while (_shouldSwayDrunk)
         {
+            if (movementScript.isPlayerRagdoll)
+            {
+                yield return null;
+                continue;
+            }
+
             int sideToSway = Random.Range(0, 2);
             
-            Quaternion swayAngleLeft = Quaternion.Euler(0, 0, swayAngle);
-            Quaternion swayAngleRight = Quaternion.Euler(0, 0, -swayAngle);
+            Quaternion swayAngleLeft = _uprightPlayerRotation * Quaternion.Euler(0, 0, swayAngle);
+            Quaternion swayAngleRight = _uprightPlayerRotation * Quaternion.Euler(0, 0, -swayAngle);
 
             //Sway left
             if (sideToSway == 0 && !movementScript.isPlayerRagdoll)
@@ -41,7 +47,7 @@ public class DrunkMovementModifier : MonoBehaviour
                 float timeElapsedForSwayingLeft = 0f;
                 Quaternion startRotationForSwayLeft = rb.rotation;
 
-                while (timeElapsedForSwayingLeft < swayDuration)
+                while (timeElapsedForSwayingLeft < swayDuration && !movementScript.isPlayerRagdoll)
                 {
                     timeElapsedForSwayingLeft += Time.deltaTime; 
                     rb.AddForce(-Vector3.right * swayForce, ForceMode.Impulse);
@@ -56,7 +62,7 @@ public class DrunkMovementModifier : MonoBehaviour
                 float timeElapsedForSwayingRight = 0f;
                 Quaternion startRotationForSwayRight = rb.rotation;
 
-                while (timeElapsedForSwayingRight < swayDuration)
+                while (timeElapsedForSwayingRight < swayDuration && !movementScript.isPlayerRagdoll)
                 {
                     timeElapsedForSwayingRight += Time.deltaTime;
                     rb.AddForce(Vector3.right * swayForce, ForceMode.Impulse);
@@ -66,11 +72,16 @@ public class DrunkMovementModifier : MonoBehaviour
                 }
             }
 
-            float timeElapsed = 0f;
+            if (movementScript.isPlayerRagdoll)
+            {
+                yield return null;
+                continue;
+            }
 
+            float timeElapsed = 0f;
             Quaternion startRotation = rb.rotation;
 
-            while (timeElapsed < playerStopLeaningDuration)
+            while (timeElapsed < playerStopLeaningDuration && !movementScript.isPlayerRagdoll)
             {
                 timeElapsed += Time.deltaTime;
                 float getUpPercentage = Mathf.Clamp01(timeElapsed / playerStopLeaningDuration);

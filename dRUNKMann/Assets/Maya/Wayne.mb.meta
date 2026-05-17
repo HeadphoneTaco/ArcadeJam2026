@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:dRUNKMann/Assets/Models/Wayne.fbx.meta
+guid: 31bc2adaf62f71b4c82ab87e6b5efc3f
+========
 guid: 8918f4ec522be8642950042af860e002
+>>>>>>>> Wayne:dRUNKMann/Assets/Maya/Wayne.mb.meta
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
